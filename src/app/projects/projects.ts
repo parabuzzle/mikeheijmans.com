@@ -87,31 +87,6 @@ export const Projects = [
     ],
   },
   {
-    title: "Linky",
-    description:
-      "Linky is your friendly intranet URL shortener. Its made to be simple to setup, simple to use, and simply useful. Linky is based off of a number of internal URL shorteners that exist in many large tech companies in the Silicon Valley.",
-    active: false,
-    image: "/projects/linky.png",
-    imageAlt: "Linky Screenshot",
-    links: [
-      {
-        link: "https://github.com/parabuzzle/linky/blob/master/README.md",
-        name: "Docs",
-        target: "_blank",
-      },
-      {
-        link: "https://github.com/parabuzzle/linky",
-        name: "Source",
-        target: "_blank",
-      },
-      {
-        link: "https://hub.docker.com/r/parabuzzle/linky/",
-        name: "DockerHub",
-        target: "_blank",
-      },
-    ],
-  },
-  {
     title: "CraneOperator",
     description:
       "Just as crane operators can see where all the containers are in the shipyard, CraneOperator gives you a simple web interface for browsing around a Docker Registry running version 2.0+",
@@ -131,6 +106,31 @@ export const Projects = [
       },
       {
         link: "http://hub.docker.com/r/parabuzzle/craneoperator/",
+        name: "DockerHub",
+        target: "_blank",
+      },
+    ],
+  },
+  {
+    title: "Linky",
+    description:
+      "Linky is your friendly intranet URL shortener. Its made to be simple to setup, simple to use, and simply useful. Linky is based off of a number of internal URL shorteners that exist in many large tech companies in the Silicon Valley.",
+    active: false,
+    image: "/projects/linky.png",
+    imageAlt: "Linky Screenshot",
+    links: [
+      {
+        link: "https://github.com/parabuzzle/linky/blob/master/README.md",
+        name: "Docs",
+        target: "_blank",
+      },
+      {
+        link: "https://github.com/parabuzzle/linky",
+        name: "Source",
+        target: "_blank",
+      },
+      {
+        link: "https://hub.docker.com/r/parabuzzle/linky/",
         name: "DockerHub",
         target: "_blank",
       },

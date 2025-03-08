@@ -54,7 +54,7 @@ export function ProjectCard({ data }: { data: ProjectCardData }) {
         {data.links.map((link) => {
           return (
             <Link key={link.link} href={link.link} target={link.target}>
-              <Button variant="light" size="compact-sm">
+              <Button variant="light" size="compact-md">
                 {link.name}
               </Button>
             </Link>
