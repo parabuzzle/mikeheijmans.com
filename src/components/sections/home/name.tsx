@@ -16,6 +16,19 @@ export function Name() {
           Hello there, my name is
         </Text>
       </motion.div>
+      <motion.div
+        initial={{ opacity: 0, scale: 2, x: 100, y: -100 }}
+        animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
+        transition={{ duration: 2, delay: 0.5, ease: easing }}
+      >
+        <Avatar
+          style={{ float: "right", marginRight: "10px" }}
+          hiddenFrom="sm"
+          size="xl"
+          src="/mike.png"
+          alt="Mike Heijmans"
+        />
+      </motion.div>
 
       <Group gap="xl" justify="flex-start" align="center" mb="xl">
         <motion.div
