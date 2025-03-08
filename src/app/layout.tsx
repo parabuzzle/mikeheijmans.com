@@ -12,7 +12,8 @@ import theme from "@/theme";
 
 export const metadata: Metadata = {
   title: "MikeHeijmans.com",
-  description: "The personal profile of Mike Heijmans",
+  description:
+    "Discover the personal projects of Mike Heijmans, a seasoned software engineer and technical leader with two decades of experience. As the Director of Platform Technology at Tradeweb Markets LLC, Mike leads teams focused on platform engineering, Kubernetes, CI/CD, observability, and cloud strategy. Outside of work, he explores new technologies, builds creative side projects, flies planes, dives into caves, and contributes to open-source. Dive into his latest projects, blog posts, and insights on engineering, leadership, and innovation.",
 };
 
 export default function RootLayout({
