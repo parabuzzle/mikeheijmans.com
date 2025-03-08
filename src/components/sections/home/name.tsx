@@ -31,7 +31,7 @@ export function Name() {
         />
       </motion.div>
 
-      <Group gap="xl" justify="flex-start" align="center" mb="xl">
+      <Group gap="xl" justify="flex-start" align="center" mb="sm">
         <motion.div
           initial={{ opacity: 0, scale: 1, y: 100 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -54,6 +54,15 @@ export function Name() {
           />
         </motion.div>
       </Group>
+      <motion.div
+        initial={{ opacity: 0, scale: 1 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 2, delay: 2, ease: easing }}
+      >
+        <Text c="dimmed" fs="italic" size="md">
+          I build organizations and applications for the furture.
+        </Text>
+      </motion.div>
     </Box>
   );
 }
