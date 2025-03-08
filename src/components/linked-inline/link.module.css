@@ -1,0 +1,17 @@
+:root[data-mantine-color-scheme="dark"] .link {
+  color: var(--mantine-color-indigo-1);
+  text-decoration: none;
+}
+
+:root[data-mantine-color-scheme="light"] .link {
+  color: var(--mantine-color-indigo-9);
+  text-decoration: none;
+}
+
+:root[data-mantine-color-scheme="dark"] .link:hover {
+  color: var(--mantine-color-indigo-3);
+}
+
+:root[data-mantine-color-scheme="light"] .link:hover {
+  color: var(--mantine-color-black);
+}
