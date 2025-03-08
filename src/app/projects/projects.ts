@@ -14,6 +14,11 @@ export const Projects = [
         name: "Website",
         target: "_blank",
       },
+      {
+        link: "https://github.com/parabuzzle/engineeringhell",
+        name: "Source",
+        target: "_blank",
+      },
     ],
   },
   {
@@ -47,6 +52,11 @@ export const Projects = [
       {
         link: "https://www.mikeheijmans.com",
         name: "Website",
+        target: "_blank",
+      },
+      {
+        link: "https://github.com/parabuzzle/mikeheijmans.com",
+        name: "Source",
         target: "_blank",
       },
     ],
