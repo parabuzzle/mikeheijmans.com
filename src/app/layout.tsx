@@ -33,7 +33,17 @@ export default function RootLayout({
       <body>
         <MantineProvider theme={theme} defaultColorScheme="dark">
           <Header />
-          <Box pb={200}>{children}</Box>
+          <Box
+            style={{
+              zIndex: 10,
+              backgroundColor: "var(--mantine-color-body)",
+              marginBottom: 120,
+              minHeight: "100vh",
+            }}
+            pb={200}
+          >
+            {children}
+          </Box>
           <Footer />
         </MantineProvider>
       </body>
