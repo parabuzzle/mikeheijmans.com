@@ -1,10 +1,12 @@
 "use client";
 import { Container, Box, Text, Title, SimpleGrid } from "@mantine/core";
+import { useDocumentTitle } from "@mantine/hooks";
 import { motion } from "motion/react";
 import { ProjectCard } from "@/components/projects";
 import Projects from "./projects";
 
 export default function Page() {
+  useDocumentTitle("Mike's Projects");
   const projectCards = () => {
     return Projects.map((project, idx) => {
       return (
