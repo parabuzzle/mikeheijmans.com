@@ -8,12 +8,14 @@ import {
   Text,
   Drawer,
   Flex,
+  useMantineColorScheme,
 } from "@mantine/core";
 import {
   //IconExternalLink,
   IconHome,
   //IconTool,
   IconUserScreen,
+  IconSun,
   //IconBallpen,
 } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
@@ -46,6 +48,7 @@ const links = [
 
 export default function Header() {
   const [opened, { toggle, close }] = useDisclosure(false);
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const router = useRouter();
 
   const items = links.map((link) => (
@@ -82,6 +85,23 @@ export default function Header() {
     </Box>
   ));
 
+  const burgerSchemePicker = () => (
+    <Box key="scheme" mb="sm">
+      <Button
+        variant="gradient"
+        key="scheme"
+        fullWidth
+        justify="flex-start"
+        leftSection={<IconSun size={iconSize} />}
+        onClick={(): void => {
+          toggleColorScheme();
+        }}
+      >
+        {colorScheme === "dark" ? "Light Mode" : "Dark Mode"}
+      </Button>
+    </Box>
+  );
+
   return (
     <Box>
       <header className={classes.header}>
@@ -108,8 +128,7 @@ export default function Header() {
             </Box>
           </Flex>
 
-          <Group gap="lg" hiddenFrom="sm">
-            <SchemePicker />
+          <Group gap="xs" hiddenFrom="sm">
             <Burger
               opened={opened}
               onClick={toggle}
@@ -131,6 +150,8 @@ export default function Header() {
             }
           >
             {Burgeritems}
+            {burgerSchemePicker()}
+
             <Box mt="xl">
               <SocialBar />
             </Box>
