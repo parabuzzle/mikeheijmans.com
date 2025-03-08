@@ -60,7 +60,7 @@ export function Name() {
         transition={{ duration: 2, delay: 2, ease: easing }}
       >
         <Text c="dimmed" fs="italic" size="md">
-          I build organizations and applications for the furture.
+          I build organizations and applications for the future.
         </Text>
       </motion.div>
     </Box>
