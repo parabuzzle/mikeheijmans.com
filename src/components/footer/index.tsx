@@ -1,15 +1,14 @@
-"use client";
-import { Box, Text, useMantineColorScheme } from "@mantine/core";
+import { Box, Text } from "@mantine/core";
 import LinkedInline from "../linked-inline";
+import classes from "./styles.module.css";
 
 export default function Footer() {
-  const { colorScheme } = useMantineColorScheme();
   return (
     <Box
       p="xl"
       ta="center"
       h="120px"
-      bg={colorScheme === "dark" ? "dark" : "#efedff"}
+      className={classes.footer}
       style={{ position: "fixed", bottom: "0px", width: "100%", zIndex: -1 }}
     >
       This site is built using{" "}
