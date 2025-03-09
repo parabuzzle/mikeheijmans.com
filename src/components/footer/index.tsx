@@ -1,3 +1,4 @@
+"use client";
 import { Box, Text } from "@mantine/core";
 import LinkedInline from "../linked-inline";
 import classes from "./styles.module.css";
