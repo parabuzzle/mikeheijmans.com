@@ -1,4 +1,4 @@
-import { createTheme, Button } from "@mantine/core";
+import { createTheme } from "@mantine/core";
 
 const theme = createTheme({
   primaryColor: "indigo",
