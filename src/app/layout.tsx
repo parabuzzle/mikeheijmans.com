@@ -7,9 +7,11 @@ import {
   mantineHtmlProps,
   Box,
 } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import theme from "@/theme";
+import "@mantine/notifications/styles.css";
 
 export const metadata: Metadata = {
   title: "Mike's Profile",
@@ -34,6 +36,7 @@ export default function RootLayout({
       </head>
       <body>
         <MantineProvider theme={theme} defaultColorScheme="dark">
+          <Notifications />
           <Header />
           <Box
             style={{

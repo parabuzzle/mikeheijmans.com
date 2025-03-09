@@ -6,6 +6,7 @@ import {
   IconBrandGithub,
 } from "@tabler/icons-react";
 import type { MantineSize } from "@mantine/core";
+import Contact from "@/components/contact";
 import Link from "next/link";
 
 export default function Social({
@@ -80,6 +81,14 @@ export default function Social({
           </ActionIcon>
         </motion.div>
       </Link>
+      <motion.div
+        initial={{ opacity: 0, scale: 1.4 }}
+        animate={{ opacity: 1, scale: 1 }}
+        whileHover={{ scale: 1.2 }}
+        transition={{ delay: 0.3, type: "spring", bounce: 0.6, duration: 1 }}
+      >
+        <Contact />
+      </motion.div>
     </Flex>
   );
 }

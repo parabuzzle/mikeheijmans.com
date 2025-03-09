@@ -1,4 +1,4 @@
-import { createTheme } from "@mantine/core";
+import { createTheme, Button } from "@mantine/core";
 
 const theme = createTheme({
   primaryColor: "indigo",
@@ -8,6 +8,13 @@ const theme = createTheme({
     deg: 45,
   },
   fontFamily: "gesta, sans-serif",
+  components: {
+    Button: {
+      defaultProps: {
+        variant: "light",
+      },
+    },
+  },
   colors: {
     dark: [
       "#ddd",
