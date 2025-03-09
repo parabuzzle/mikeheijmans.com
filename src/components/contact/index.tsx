@@ -17,7 +17,7 @@ import { IconMail, IconEraser, IconSend } from "@tabler/icons-react";
 import { sendWebContact } from "./actions";
 import classes from "./styles.module.css";
 
-export function Contact() {
+export function Contact({ navClose }: { navClose?: () => void }) {
   const [opened, { open, close }] = useDisclosure(false);
   const [loading, setLoading] = useState(false);
 
@@ -64,6 +64,11 @@ export function Contact() {
     }
 
     setLoading(false);
+
+    if (navClose) {
+      navClose();
+    }
+
     close();
 
     notifications.show({

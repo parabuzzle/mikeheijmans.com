@@ -11,7 +11,8 @@ import Link from "next/link";
 
 export default function Social({
   visibleFrom,
-}: Readonly<{ visibleFrom?: MantineSize }>) {
+  navClose,
+}: Readonly<{ visibleFrom?: MantineSize; navClose?: () => void }>) {
   return (
     <Flex
       gap="xs"
@@ -87,7 +88,7 @@ export default function Social({
         whileHover={{ scale: 1.2 }}
         transition={{ delay: 0.3, type: "spring", bounce: 0.6, duration: 1 }}
       >
-        <Contact />
+        <Contact navClose={navClose} />
       </motion.div>
     </Flex>
   );

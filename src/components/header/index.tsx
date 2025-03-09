@@ -153,7 +153,7 @@ export default function Header() {
             {burgerSchemePicker()}
 
             <Box mt="xl">
-              <SocialBar />
+              <SocialBar navClose={close} />
             </Box>
           </Drawer>
         </Container>
