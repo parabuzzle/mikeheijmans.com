@@ -11,7 +11,7 @@ export default function ClientRendered() {
         key="trade-calculator"
         initial={{ opacity: 0, scale: 1, y: 0, x: 100 }}
         animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
-        whileHover={{ scale: 1.02 }}
+        whileHover={{ x: -10 }}
         transition={{
           type: "spring",
           bounce: 0.4,
