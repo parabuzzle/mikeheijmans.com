@@ -5,18 +5,46 @@ import { NumberField } from "./number-field";
 import { RiskSlider } from "./risk-slider";
 import { Direction } from "./direction";
 import { Results } from "./results";
+import { Fees } from "./fees";
 
-export function Calculator() {
-  const [price, setPrice] = useState(18.42);
-  const [ratio, setRatio] = useState(3);
-  const [long, setLong] = useState(true);
-  const [acceptableLoss, setAcceptableLoss] = useState(500);
-  const [numberOfShares, setNumberOfShares] = useState(1000);
+export interface CalculatorProps {
+  initialPrice?: number;
+  initialRatio?: number;
+  isShort?: boolean;
+  initialAcceptableLoss?: number;
+  initialNumberOfShares?: number;
+  initalBuyFee?: number;
+  initialSellFee?: number;
+  initalFeePercent?: boolean;
+}
+
+export function Calculator({
+  initialPrice,
+  initialRatio,
+  isShort,
+  initialAcceptableLoss,
+  initialNumberOfShares,
+  initalBuyFee,
+  initialSellFee,
+  initalFeePercent,
+}: CalculatorProps) {
+  const [price, setPrice] = useState(initialPrice || 18.42);
+  const [ratio, setRatio] = useState(initialRatio || 3);
+  const [long, setLong] = useState(!isShort);
+  const [acceptableLoss, setAcceptableLoss] = useState(
+    initialAcceptableLoss || 500
+  );
+  const [numberOfShares, setNumberOfShares] = useState(
+    initialNumberOfShares || 1000
+  );
   const [requiredCapital, setRequiredCapital] = useState(0);
   const [targetPrice, setTargetPrice] = useState(0);
   const [stopPrice, setStopPrice] = useState(0);
   const [expectedReturn, setExpectedReturn] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [buyFee, setBuyFee] = useState(initalBuyFee || 0);
+  const [sellFee, setSellFee] = useState(initialSellFee || 0);
+  const [feeSimple, setFeeSimple] = useState(!initalFeePercent);
 
   const calculate = () => {
     setLoading(true);
@@ -29,8 +57,16 @@ export function Calculator() {
       return;
     }
 
-    const capital = price * numberOfShares;
-    const ret = acceptableLoss * ratio;
+    let capital = price * numberOfShares;
+    let ret = acceptableLoss * ratio;
+
+    if (feeSimple) {
+      capital += buyFee;
+      ret -= sellFee;
+    } else {
+      capital += (capital * (buyFee || 0)) / 100;
+      ret -= (ret * sellFee) / 100;
+    }
 
     setRequiredCapital(capital);
     setExpectedReturn(ret);
@@ -47,7 +83,7 @@ export function Calculator() {
 
   useEffect(() => {
     calculate();
-  }, [price, ratio, long, acceptableLoss, numberOfShares]);
+  }, [price, ratio, long, acceptableLoss, numberOfShares, buyFee, sellFee]);
 
   const changeRatio = (value: number) => {
     setRatio(value);
@@ -93,6 +129,15 @@ export function Calculator() {
         <Text mb="sm">Risk:Reward Ratio:</Text>
         <RiskSlider ratio={ratio} setRatio={changeRatio} />
       </Box>
+      <Fees
+        buyFee={buyFee}
+        sellFee={sellFee}
+        feeSimple={feeSimple}
+        setBuyFee={setBuyFee}
+        setSellFee={setSellFee}
+        setFeeSimple={setFeeSimple}
+      />
+
       <Results
         targetPrice={targetPrice}
         requiredCapital={requiredCapital}
