@@ -13,7 +13,7 @@ import {
 import {
   //IconExternalLink,
   IconHome,
-  //IconTool,
+  IconTool,
   IconUserScreen,
   IconSun,
   //IconBallpen,
@@ -37,7 +37,7 @@ const links = [
     target: "inline",
     icon: <IconUserScreen size={iconSize} />,
   },
-  //{ link: "/tools", label: "Tools", icon: <IconTool size={iconSize} /> },
+  { link: "/tools", label: "Tools", icon: <IconTool size={iconSize} /> },
   //{
   //  link: "/blog",
   //  label: "Blog",

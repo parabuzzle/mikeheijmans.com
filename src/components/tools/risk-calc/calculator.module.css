@@ -1,0 +1,15 @@
+.paper {
+  background-color: light-dark(#efedff, #000000);
+}
+
+.input {
+  border: 1px solid rgb(18, 1, 27);
+}
+
+:root[data-mantine-color-scheme="light"] .input {
+  border: 1px solid var(--mantine-color-violet-1);
+}
+
+.switchTrack {
+  background-color: red;
+}

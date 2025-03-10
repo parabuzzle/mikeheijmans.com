@@ -7,8 +7,9 @@ const nextConfig = {
   env: {
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     CONTACT_EMAIL: process.env.CONTACT_EMAIL,
+    TIINGO_API_KEY: process.env.TIINGO_API_KEY,
+    ALPHA_VANTAGE_API_KEY: process.env.ALPHA_VANTAGE_API_KEY,
   },
-  // Optionally, add any other Next.js config below
 };
 
 const withMDX = createMDX({

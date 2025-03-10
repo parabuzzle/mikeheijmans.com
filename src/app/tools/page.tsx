@@ -1,4 +1,11 @@
+import { Metadata } from "next";
 import { Container, Box, Text, Title } from "@mantine/core";
+import ClientRendered from "./client";
+
+export const metadata: Metadata = {
+  title: "Mike's Tools",
+  description: "Various web-based tools that help me do things.",
+};
 
 export default function Page() {
   return (
@@ -7,11 +14,9 @@ export default function Page() {
         <Title order={1}>Tools</Title>
 
         <Text c="dimmed" mb="md">
-          Various tools that I&apos;ve built over the years to help me with my
-          projects.
+          {metadata.description}
         </Text>
-
-        <Text mb="md">tools go here</Text>
+        <ClientRendered />
       </Box>
     </Container>
   );
