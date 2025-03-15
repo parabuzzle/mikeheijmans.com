@@ -8,8 +8,10 @@ import {
   Box,
 } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
+import { ModalsProvider } from "@mantine/modals";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { TiingoProvider } from "@/components/tiingo";
 import theme from "@/theme";
 import "@mantine/notifications/styles.css";
 
@@ -36,20 +38,24 @@ export default function RootLayout({
       </head>
       <body>
         <MantineProvider theme={theme} defaultColorScheme="dark">
-          <Notifications />
-          <Header />
-          <Box
-            style={{
-              zIndex: 10,
-              backgroundColor: "var(--mantine-color-body)",
-              marginBottom: 120,
-              minHeight: "100vh",
-            }}
-            pb={200}
-          >
-            {children}
-          </Box>
-          <Footer />
+          <TiingoProvider>
+            <ModalsProvider>
+              <Notifications />
+              <Header />
+              <Box
+                style={{
+                  zIndex: 10,
+                  backgroundColor: "var(--mantine-color-body)",
+                  marginBottom: 120,
+                  minHeight: "100vh",
+                }}
+                pb={200}
+              >
+                {children}
+              </Box>
+              <Footer />
+            </ModalsProvider>
+          </TiingoProvider>
         </MantineProvider>
       </body>
       <GoogleAnalytics gaId="G-CL66NW2EJN" />

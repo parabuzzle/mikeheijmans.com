@@ -8,9 +8,7 @@ export default function SchemePicker() {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
   useEffect(() => {
-    setSchemeIcon(
-      colorScheme === "dark" ? <IconSun size="lg" /> : <IconMoon size="lg" />
-    );
+    setSchemeIcon(colorScheme === "dark" ? <IconSun /> : <IconMoon />);
   }, [colorScheme]);
 
   return (
