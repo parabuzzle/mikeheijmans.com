@@ -1,17 +1,14 @@
 .paper {
   background-image: linear-gradient(
-    to top,
+    to bottom right,
     var(--mantine-color-black) 20%,
     #0c0112
   );
 }
 
 :root[data-mantine-color-scheme="light"] .paper {
-  background-image: linear-gradient(
-    to bottom,
-    var(--mantine-color-violet-0) 20%,
-    #fff
-  );
+  background-image: inherit;
+  background-color: var(--mantine-color-violet-0);
 }
 
 /*
