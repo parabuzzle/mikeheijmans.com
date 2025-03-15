@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from "react";
 import type { PropsWithChildren } from "react";
 
-export const TiingoContext = React.createContext<any>(null);
+export const TiingoContext = React.createContext<unknown>(null);
 
-export const TiingoProvider = ({ children }: PropsWithChildren<{}>) => {
+export const TiingoProvider = ({ children }: PropsWithChildren) => {
   const [apiKey, setApiKey] = useState("");
 
   const saveKey = (key: string) => {

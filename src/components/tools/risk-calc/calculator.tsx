@@ -11,7 +11,6 @@ import {
   Image,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { modals } from "@mantine/modals";
 import Link from "next/link";
 import { IconSearch } from "@tabler/icons-react";
 import { NumberField } from "./number-field";
@@ -138,6 +137,7 @@ export function Calculator({
       setLoadingStock(false);
       close();
     } catch (error) {
+      console.error(error);
       notifications.show({
         title: "Error",
         message: "There was an error looking up the stock price",
@@ -216,6 +216,7 @@ export function Calculator({
               Powered by{" "}
             </Text>
             <Image
+              alt="Tiingo"
               h={15}
               src="https://www.tiingo.com/dist/images/tiingo/logos/tiingo_full_light_color.svg"
             />
