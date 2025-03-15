@@ -21,6 +21,7 @@ import { Fees } from "./fees";
 import { TiingoKey, useTiingo } from "@/components/tiingo";
 import { notifications } from "@mantine/notifications";
 import { getTopOfBook } from "@/components/tiingo/actions";
+import classes from "./calculator.module.css";
 
 export interface CalculatorProps {
   initialPrice?: number;
@@ -187,9 +188,13 @@ export function Calculator({
           <Box mt="xs">
             <TextInput
               key="ticker"
-              autoFocus
               required
               withAsterisk
+              classNames={{ input: classes.input }}
+              onChange={(e) => {
+                //upper case everything
+                e.currentTarget.value = e.currentTarget.value.toUpperCase();
+              }}
               id="ticker"
               disabled={apiKey === ""}
               label="Ticker to Lookup"

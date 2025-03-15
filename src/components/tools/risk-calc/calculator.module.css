@@ -1,13 +1,48 @@
 .paper {
-  background-color: light-dark(#efedff, #000000);
+  background-image: linear-gradient(
+    to top,
+    var(--mantine-color-black) 20%,
+    #0c0112
+  );
 }
 
+:root[data-mantine-color-scheme="light"] .paper {
+  background-image: linear-gradient(
+    to bottom,
+    var(--mantine-color-violet-0) 20%,
+    #fff
+  );
+}
+
+/*
 .input {
   border: 1px solid rgb(18, 1, 27);
 }
+*/
+
+.input {
+  border: 1px solid rgb(18, 1, 27);
+  background-image: linear-gradient(
+    to bottom right,
+    var(--mantine-color-black) 20%,
+    #0c0112
+  );
+}
+
+/*
+:root[data-mantine-color-scheme="light"] .input {
+  border: 1px solid var(--mantine-color-violet-1);
+  background-image: linear-gradient(
+    to bottom right,
+    var(--mantine-color-violet-0),
+    #fff
+  );
+}
+  */
 
 :root[data-mantine-color-scheme="light"] .input {
   border: 1px solid var(--mantine-color-violet-1);
+  background-image: inherit;
 }
 
 .switchTrack {
