@@ -1,5 +1,7 @@
 import { createTheme } from "@mantine/core";
 
+const defaultInputSize = "md";
+
 const theme = createTheme({
   primaryColor: "indigo",
   defaultGradient: {
@@ -12,6 +14,26 @@ const theme = createTheme({
     Button: {
       defaultProps: {
         variant: "light",
+      },
+    },
+    TextInput: {
+      defaultProps: {
+        size: defaultInputSize,
+      },
+    },
+    NumberInput: {
+      defaultProps: {
+        size: defaultInputSize,
+      },
+    },
+    Textarea: {
+      defaultProps: {
+        size: defaultInputSize,
+      },
+    },
+    PasswordInput: {
+      defaultProps: {
+        size: defaultInputSize,
       },
     },
   },
