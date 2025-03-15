@@ -132,12 +132,31 @@ export function Calculator({
     try {
       const response = await getTopOfBook(ticker, apiKey);
 
-      console.log(response);
+      if (response.message) {
+        notifications.show({
+          title: "Error",
+          message: response.message,
+          color: "red",
+        });
+        setLoadingStock(false);
+        return;
+      }
+
+      if (response.tngoLast === undefined) {
+        notifications.show({
+          title: "Error",
+          message: "No price data found for that ticker",
+          color: "red",
+        });
+        setLoadingStock(false);
+        return;
+      }
+
       setPrice(response.tngoLast);
       setLoadingStock(false);
       close();
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      console.error(e);
       notifications.show({
         title: "Error",
         message: "There was an error looking up the stock price",
@@ -168,6 +187,7 @@ export function Calculator({
           <Box mt="xs">
             <TextInput
               key="ticker"
+              autoFocus
               required
               withAsterisk
               id="ticker"
@@ -211,13 +231,15 @@ export function Calculator({
           <Button onClick={open} leftSection={<IconSearch />} size="sm">
             Lookup Current Price for a Stock Ticker
           </Button>
-          <Box>
+          <Box h={40}>
             <Text size="sm" c="dimmed">
               Powered by{" "}
             </Text>
             <Image
               alt="Tiingo"
               h={15}
+              w="auto"
+              fit="contain"
               src="https://www.tiingo.com/dist/images/tiingo/logos/tiingo_full_light_color.svg"
             />
           </Box>
