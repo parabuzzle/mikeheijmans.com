@@ -1,4 +1,4 @@
-import { TextInput, Box } from "@mantine/core";
+import { PasswordInput, Box } from "@mantine/core";
 import { useTiingo } from "./provider";
 
 export function TiingoKey() {
@@ -6,7 +6,7 @@ export function TiingoKey() {
 
   return (
     <Box>
-      <TextInput
+      <PasswordInput
         label="Tiingo API Key"
         placeholder="Enter your Tiingo API key"
         value={apiKey}
