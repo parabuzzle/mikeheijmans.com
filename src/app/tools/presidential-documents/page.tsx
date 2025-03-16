@@ -23,7 +23,7 @@ interface QueryParams {
 export default async function Page({
   searchParams,
 }: {
-  searchParams: QueryParams;
+  searchParams: Promise<QueryParams>;
 }) {
   const { page, per_page, doc_type } = await searchParams;
 
