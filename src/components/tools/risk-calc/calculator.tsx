@@ -1,27 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
-import {
-  Box,
-  Text,
-  Grid,
-  Button,
-  TextInput,
-  Modal,
-  Group,
-  Image,
-} from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-import Link from "next/link";
-import { IconSearch } from "@tabler/icons-react";
+import { Box, Text, Grid } from "@mantine/core";
 import { NumberField } from "./number-field";
 import { RiskSlider } from "./risk-slider";
 import { Direction } from "./direction";
 import { Results } from "./results";
 import { Fees } from "./fees";
-import { TiingoKey, useTiingo } from "@/components/tiingo";
-import { notifications } from "@mantine/notifications";
-import { getTopOfBook } from "@/components/tiingo/actions";
-import classes from "./calculator.module.css";
+import { LookupModal } from "@/components/tiingo";
+import type { TiingoTopofBookResults } from "@/components/tiingo";
 
 export interface CalculatorProps {
   initialPrice?: number;
@@ -44,8 +30,6 @@ export function Calculator({
   initialSellFee,
   initalFeePercent,
 }: CalculatorProps) {
-  const { apiKey } = useTiingo();
-  const [opened, { open, close }] = useDisclosure(false);
   const [price, setPrice] = useState(initialPrice || 18.42);
   const [ratio, setRatio] = useState(initialRatio || 3);
   const [long, setLong] = useState(!isShort);
@@ -63,7 +47,6 @@ export function Calculator({
   const [buyFee, setBuyFee] = useState(initalBuyFee || 0);
   const [sellFee, setSellFee] = useState(initialSellFee || 0);
   const [feeSimple, setFeeSimple] = useState(!initalFeePercent);
-  const [loadingStock, setLoadingStock] = useState(false);
 
   const calculate = () => {
     setLoading(true);
@@ -108,148 +91,13 @@ export function Calculator({
     setRatio(value);
   };
 
-  const lookupStock = async (ticker: string | null) => {
-    if (apiKey === "" || apiKey === null) {
-      console.log("no apikey");
-      notifications.show({
-        title: "No Tiingo API Key",
-        message: "You must have a Tiingo API key to lookup stock prices",
-        color: "red",
-      });
-      setLoadingStock(false);
-      return;
-    }
-
-    if (ticker === "" || ticker === null) {
-      notifications.show({
-        title: "No Ticker",
-        message: "You must enter a stock ticker to lookup",
-        color: "red",
-      });
-      setLoadingStock(false);
-      return;
-    }
-
-    try {
-      const response = await getTopOfBook(ticker, apiKey);
-
-      if (response.message) {
-        notifications.show({
-          title: "Error",
-          message: response.message,
-          color: "red",
-        });
-        setLoadingStock(false);
-        return;
-      }
-
-      if (response.tngoLast === undefined) {
-        notifications.show({
-          title: "Error",
-          message: "No price data found for that ticker",
-          color: "red",
-        });
-        setLoadingStock(false);
-        return;
-      }
-
-      setPrice(response.tngoLast);
-      setLoadingStock(false);
-      close();
-    } catch (e) {
-      console.error(e);
-      notifications.show({
-        title: "Error",
-        message: "There was an error looking up the stock price",
-        color: "red",
-      });
-    }
-
-    setLoadingStock(false);
-    //close();
-  };
-
-  const modal = () => {
-    return (
-      <Box>
-        <TiingoKey />
-        <Text size="sm" hidden={apiKey !== ""}>
-          To lookup a stock price, you must have a (free) Tiingo Api key. You
-          can get it here:{" "}
-          <Link href="https://www.tiingo.com/account/api/token" target="_blank">
-            https://www.tiingo.com/account/api/token
-          </Link>
-        </Text>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
-          <Box mt="xs">
-            <TextInput
-              key="ticker"
-              required
-              withAsterisk
-              classNames={{ input: classes.input }}
-              onChange={(e) => {
-                //upper case everything
-                e.currentTarget.value = e.currentTarget.value.toUpperCase();
-              }}
-              id="ticker"
-              disabled={apiKey === ""}
-              label="Ticker to Lookup"
-              placeholder="Enter stock symbol to lookup"
-            />
-          </Box>
-          <Button
-            fullWidth
-            type="submit"
-            disabled={apiKey === ""}
-            loading={loadingStock}
-            onClick={(e) => {
-              setLoadingStock(true);
-              let ticker = "";
-              const tform = e.currentTarget.form;
-
-              if (tform && tform["ticker"].value !== "") {
-                ticker = tform["ticker"].value;
-              }
-
-              lookupStock(ticker);
-            }}
-            mt="md"
-          >
-            Lookup
-          </Button>
-        </form>
-      </Box>
-    );
+  const updateData = (data: TiingoTopofBookResults) => {
+    setPrice(data.tngoLast);
   };
 
   return (
     <Box mt="3em">
-      <Modal opened={opened} onClose={close} title="Lookup Stock Price">
-        {modal()}
-      </Modal>
-      <Box mb="xl">
-        <Group gap="sm">
-          <Button onClick={open} leftSection={<IconSearch />} size="sm">
-            Lookup Current Price for a Stock Ticker
-          </Button>
-          <Box h={40}>
-            <Text size="sm" c="dimmed">
-              Powered by{" "}
-            </Text>
-            <Image
-              alt="Tiingo"
-              h={15}
-              w="auto"
-              fit="contain"
-              src="https://www.tiingo.com/dist/images/tiingo/logos/tiingo_full_light_color.svg"
-            />
-          </Box>
-        </Group>
-      </Box>
+      <LookupModal callback={updateData} />
 
       <Box mb="lg">
         <Grid>

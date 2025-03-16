@@ -3,7 +3,7 @@ import { createTheme } from "@mantine/core";
 const defaultInputSize = "md";
 
 const theme = createTheme({
-  primaryColor: "indigo",
+  primaryColor: "violet",
   defaultGradient: {
     from: "indigo",
     to: "purple",
