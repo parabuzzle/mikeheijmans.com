@@ -13,6 +13,7 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { TiingoProvider } from "@/components/tiingo";
 import theme from "@/theme";
+import "./global.css";
 import "@mantine/notifications/styles.css";
 
 export const metadata: Metadata = {

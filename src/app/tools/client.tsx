@@ -11,7 +11,7 @@ export default function ClientRendered() {
         key="trade-calculator"
         initial={{ opacity: 0, scale: 1, y: 0, x: 100 }}
         animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
-        whileHover={{ x: -10 }}
+        whileHover={{ x: -10, scale: 1.02 }}
         transition={{
           type: "spring",
           bounce: 0.4,
@@ -35,7 +35,7 @@ export default function ClientRendered() {
               <Title order={4}>Trade Calculator</Title>
               <IconExternalLink size="1.5em" />
             </Group>
-            <Divider mb="sm" />
+            <Divider mb="sm" color="violet" />
             <Text c="dimmed">
               This is a little tool I built years ago to help caluculate a
               trading plan using a risk:reward ratio.
@@ -52,6 +52,49 @@ export default function ClientRendered() {
               opportunities that give you this edge. The calculator helps me
               figure out if the required upside sell price is realistic and
               helps me plan a more disciplined exit strategy.
+            </Text>
+          </Paper>
+        </Link>
+      </motion.div>
+      <motion.div
+        key="pres-docs"
+        initial={{ opacity: 0, scale: 1, y: 0, x: 100 }}
+        animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
+        whileHover={{ x: -10, scale: 1.02 }}
+        transition={{
+          type: "spring",
+          bounce: 0.4,
+          delay: 1 * 0.1,
+          duration: 0.6,
+          ease: "easeInOut",
+        }}
+      >
+        <Link
+          href="/tools/presidential-documents"
+          style={{ textDecoration: "none", color: "light-dark(#000, #ffff)" }}
+        >
+          <Paper
+            mb="md"
+            p="md"
+            shadow="md"
+            radius="md"
+            style={{ backgroundColor: "light-dark(#efedff, #000000)" }}
+          >
+            <Group gap="sm">
+              <Title order={4}>Presidential Documents</Title>
+              <IconExternalLink size="1.5em" />
+            </Group>
+            <Divider mb="sm" color="violet" />
+            <Text c="dimmed">
+              This tool searches the Federal Register for presidential
+              documents.
+            </Text>
+            <Text mt="lg" mb="xl">
+              I found that I&apos;ve been struggling to keep up with all the
+              things coming out of the Executive Office lately so I built this
+              tool to help me keep track of the documents as they are published
+              to the Federal Register. This shows all documents signed by the
+              current President.
             </Text>
           </Paper>
         </Link>
