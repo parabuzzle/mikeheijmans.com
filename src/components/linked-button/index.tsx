@@ -8,11 +8,13 @@ export default function LinkedButton({
   buttonProps,
   target,
   children,
+  disabled,
   icon,
 }: Readonly<{
   href: string;
   buttonProps?: ButtonProps;
   target?: string;
+  disabled?: boolean;
   children?: React.ReactNode;
   icon?: React.ReactNode;
 }>) {
@@ -20,6 +22,7 @@ export default function LinkedButton({
 
   return (
     <Button
+      disabled={disabled}
       rightSection={icon}
       variant="subtle"
       {...buttonProps}
@@ -39,7 +42,7 @@ export default function LinkedButton({
       }}
     >
       <a
-        href={href}
+        href={disabled ? "#" : href}
         style={{ textDecoration: "none", color: "inherit" }}
         onClick={(e): void => {
           e.preventDefault();

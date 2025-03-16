@@ -50,6 +50,7 @@ export function Document({
             <Box w={width < 420 ? "100%" : "auto"}>
               <Flex gap="xs" justify="flex-end" direction="column">
                 <LinkedButton
+                  disabled={!document.html_url}
                   href={document.html_url}
                   buttonProps={{ variant: "light" }}
                   target="_blank"
@@ -57,6 +58,7 @@ export function Document({
                   View Online
                 </LinkedButton>
                 <LinkedButton
+                  disabled={!document.pdf_url}
                   href={document.pdf_url}
                   buttonProps={{ variant: "light" }}
                   target="_blank"
@@ -64,7 +66,8 @@ export function Document({
                   View PDF
                 </LinkedButton>
                 <LinkedButton
-                  href={document.pdf_url}
+                  disabled={!document.public_inspection_pdf_url}
+                  href={document.public_inspection_pdf_url}
                   buttonProps={{ variant: "light" }}
                   target="_blank"
                 >
