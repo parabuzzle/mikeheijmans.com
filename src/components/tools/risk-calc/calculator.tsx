@@ -7,7 +7,7 @@ import { Direction } from "./direction";
 import { Results } from "./results";
 import { Fees } from "./fees";
 import { LookupModal } from "@/components/tiingo";
-import type { TiingoTopofBookResults } from "@/components/tiingo";
+import type { TiingoTopofBookResults } from "@/components/tiingo/actions";
 
 export interface CalculatorProps {
   initialPrice?: number;
