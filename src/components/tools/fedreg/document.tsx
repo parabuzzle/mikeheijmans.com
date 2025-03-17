@@ -10,6 +10,7 @@ import {
   Badge,
   Grid,
 } from "@mantine/core";
+import { IconExternalLink } from "@tabler/icons-react";
 import LinkedButton from "@/components/linked-button";
 import type { FedRegDocument } from "@/app/tools/federal-register/actions";
 
@@ -45,9 +46,14 @@ export function Document({
           <Divider color="violet" mb="md" />
 
           <Grid>
-            <Grid.Col span={{ base: 12, xs: 8 }}>
+            <Grid.Col span={{ base: 12, xs: 7, sm: 8, md: 9 }}>
               <Box>
-                <Text c="dimmed">{document.type}</Text>
+                <Text c="dimmed" size="md">
+                  Type: {document.type}
+                </Text>
+                <Text c="dimmed" size="md">
+                  Doc Number: {document.document_number}
+                </Text>
                 <Text c="dimmed" size="sm">
                   Published: {document.publication_date}
                 </Text>
@@ -63,7 +69,7 @@ export function Document({
                 </Box>
               </Box>
             </Grid.Col>
-            <Grid.Col span={{ base: 12, xs: 4 }}>
+            <Grid.Col span={{ base: 12, xs: 5, sm: 4, md: 3 }}>
               <Flex justify="flex-end" align="center">
                 <Box w={"100%"}>
                   <Flex
@@ -74,25 +80,39 @@ export function Document({
                   >
                     <LinkedButton
                       disabled={!document.html_url}
+                      hidden={!document.html_url}
+                      icon={<IconExternalLink size="1.2em" />}
                       href={document.html_url}
-                      buttonProps={{ variant: "light" }}
+                      buttonProps={{
+                        variant: "light",
+                        justify: "space-between",
+                      }}
                       target="_blank"
                     >
                       View Online
                     </LinkedButton>
                     <LinkedButton
+                      icon={<IconExternalLink size="1.2em" />}
                       disabled={!document.pdf_url}
+                      hidden={!document.pdf_url}
                       href={document.pdf_url}
-                      buttonProps={{ variant: "light" }}
+                      buttonProps={{
+                        variant: "light",
+                        justify: "space-between",
+                      }}
                       target="_blank"
                     >
                       View PDF
                     </LinkedButton>
                     <LinkedButton
                       hidden={!document.public_inspection_pdf_url}
+                      icon={<IconExternalLink size="1.2em" />}
                       disabled={!document.public_inspection_pdf_url}
                       href={document.public_inspection_pdf_url}
-                      buttonProps={{ variant: "light" }}
+                      buttonProps={{
+                        variant: "light",
+                        justify: "space-between",
+                      }}
                       target="_blank"
                     >
                       Inspection Document
