@@ -2,6 +2,7 @@
 
 import { Select, Box } from "@mantine/core";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import classes from "./fedreg.module.css";
 
 export default function SelectDoctype({ docType }: { docType: string }) {
   const router = useRouter();
@@ -11,6 +12,7 @@ export default function SelectDoctype({ docType }: { docType: string }) {
     <Box>
       <Select
         allowDeselect={false}
+        classNames={{ input: classes.input, dropdown: classes.input }}
         data={[
           { value: "all", label: "All Documents" },
           { value: "presidential_document", label: "Presidential Documents" },

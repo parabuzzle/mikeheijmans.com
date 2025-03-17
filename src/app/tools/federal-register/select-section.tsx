@@ -2,6 +2,7 @@
 
 import { Select, Box } from "@mantine/core";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import classes from "./fedreg.module.css";
 
 const sections = [
   "business-and-industry",
@@ -21,6 +22,7 @@ export default function SelectSection() {
     <Box>
       <Select
         placeholder="Select a Section"
+        classNames={{ input: classes.input, dropdown: classes.input }}
         data={sections.map((section) => ({
           value: section,
           label: section.replace(/-/g, " "),

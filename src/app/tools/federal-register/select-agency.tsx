@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Select, Box } from "@mantine/core";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import classes from "./fedreg.module.css";
 
 export interface Agency {
   id: string;
@@ -49,6 +50,7 @@ export default function SelectAgency() {
   return (
     <Box>
       <Select
+        classNames={{ input: classes.input, dropdown: classes.input }}
         placeholder={agencies.length === 0 ? "Loading..." : "Select an Agency"}
         disabled={agencies.length === 0}
         data={agencies.map((agency) => ({

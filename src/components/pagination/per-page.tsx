@@ -16,11 +16,12 @@ export function PerPage({ perPage }: { perPage: string }) {
 
   return (
     <Flex gap="xs" align="center">
-      <Text>Results per page:</Text>
+      <Text size="sm">Results per page:</Text>
       <Select
+        size="sm"
         disabled={loading}
         value={perPage}
-        w={75}
+        w={65}
         onChange={(value) => {
           setLoading(true);
           const qParams = new URLSearchParams();

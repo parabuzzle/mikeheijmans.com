@@ -122,6 +122,18 @@ export function Document({
                     >
                       Inspection Document
                     </LinkedButton>
+                    <LinkedButton
+                      hidden={!document.title.match("Sunshine Act")}
+                      icon={<IconExternalLink size="1.2em" />}
+                      href="https://www.acus.gov/sites/default/files/documents/17%20Government%20in%20the%20Sunshine%20Act%20Basics.pdf"
+                      buttonProps={{
+                        variant: "light",
+                        justify: "space-between",
+                      }}
+                      target="_blank"
+                    >
+                      Sunshine Act Info
+                    </LinkedButton>
                   </Flex>
                 </Box>
               </Flex>

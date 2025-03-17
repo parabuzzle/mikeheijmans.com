@@ -34,9 +34,13 @@ export interface FedRegDocumentResults {
 export const getPresidentialDocuments = async ({
   per_page,
   page,
+  term,
+  location,
 }: {
   per_page?: string;
   page?: string;
+  term?: string;
+  location?: string;
 }): Promise<FedRegDocumentResults | Error> => {
   const baseUrl = "https://www.federalregister.gov/api/v1/documents.json";
   const params = new URLSearchParams();
@@ -47,6 +51,13 @@ export const getPresidentialDocuments = async ({
   }
   params.append("order", "newest");
   params.append("conditions[president][]", "donald-trump");
+  if (term) {
+    params.append("conditions[term]", term);
+  }
+
+  if (location) {
+    params.append("conditions[near][location]", location);
+  }
 
   const url = `${baseUrl}?${params.toString()}`;
 
@@ -64,10 +75,14 @@ export const getBySection = async ({
   per_page,
   page,
   section,
+  term,
+  location,
 }: {
   per_page?: string;
   page?: string;
   section: string;
+  term?: string;
+  location?: string;
 }): Promise<FedRegDocumentResults | Error> => {
   const baseUrl = "https://www.federalregister.gov/api/v1/documents.json";
   const params = new URLSearchParams();
@@ -78,6 +93,13 @@ export const getBySection = async ({
   }
   params.append("order", "newest");
   params.append("conditions[sections][]", section);
+  if (term) {
+    params.append("conditions[term]", term);
+  }
+
+  if (location) {
+    params.append("conditions[near][location]", location);
+  }
 
   const url = `${baseUrl}?${params.toString()}`;
 
@@ -94,9 +116,13 @@ export const getBySection = async ({
 export const getAllDocs = async ({
   per_page,
   page,
+  term,
+  location,
 }: {
   per_page?: string;
   page?: string;
+  term?: string;
+  location?: string;
 }): Promise<FedRegDocumentResults | Error> => {
   const baseUrl = "https://www.federalregister.gov/api/v1/documents.json";
   const params = new URLSearchParams();
@@ -106,6 +132,14 @@ export const getAllDocs = async ({
     params.append("page", page.toString());
   }
   params.append("order", "newest");
+
+  if (term) {
+    params.append("conditions[term]", term);
+  }
+
+  if (location) {
+    params.append("conditions[near][location]", location);
+  }
 
   const url = `${baseUrl}?${params.toString()}`;
 
@@ -123,10 +157,14 @@ export const getByAgency = async ({
   per_page,
   page,
   agency,
+  term,
+  location,
 }: {
   per_page?: string;
   page?: string;
   agency: string;
+  term?: string;
+  location?: string;
 }): Promise<FedRegDocumentResults | Error> => {
   const baseUrl = "https://www.federalregister.gov/api/v1/documents.json";
   const params = new URLSearchParams();
@@ -137,6 +175,14 @@ export const getByAgency = async ({
   }
   params.append("order", "newest");
   params.append("conditions[agencies][]", agency);
+
+  if (term) {
+    params.append("conditions[term]", term);
+  }
+
+  if (location) {
+    params.append("conditions[near][location]", location);
+  }
 
   const url = `${baseUrl}?${params.toString()}`;
 

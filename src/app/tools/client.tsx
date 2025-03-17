@@ -86,11 +86,12 @@ export default function ClientRendered() {
             </Group>
             <Divider mb="sm" color="violet" />
             <Text c="dimmed">
-              This tool searches the US Federal Register for documents.
+              This tool searches the United States Federal Register for
+              documents.
             </Text>
             <Text mt="lg" mb="xl">
               From Presidential Orders to Rule Proposals by various agencies,
-              this tool helps me keep track of the documents as they are
+              this tool helps you keep track of the documents as they are
               published to the Federal Register to keep up with what&apos;s
               happening on Capital Hill.
             </Text>
