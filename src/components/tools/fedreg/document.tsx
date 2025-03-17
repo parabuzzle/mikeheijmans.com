@@ -61,11 +61,16 @@ export function Document({
                   <Text c="dimmed" size="xs" mb="xs">
                     Agencies:
                   </Text>
-                  {document.agencies.map((agency) => (
-                    <Badge key={agency.id} p="xs" variant="light" mr="xs">
-                      {agency.name}
-                    </Badge>
-                  ))}
+                  {document.agencies.map((agency) => {
+                    // In some cases, the agency is not properly set.. skip those
+                    if (!agency.id) return null;
+
+                    return (
+                      <Badge key={agency.id} p="xs" variant="light" mr="xs">
+                        {agency.name}
+                      </Badge>
+                    );
+                  })}
                 </Box>
               </Box>
             </Grid.Col>
