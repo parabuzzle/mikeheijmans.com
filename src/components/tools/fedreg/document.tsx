@@ -1,18 +1,25 @@
 "use client";
 import { motion } from "motion/react";
-import { Text, Title, Box, Paper, Divider, Group, Flex } from "@mantine/core";
+import {
+  Text,
+  Title,
+  Box,
+  Paper,
+  Divider,
+  Flex,
+  Badge,
+  Grid,
+} from "@mantine/core";
 import LinkedButton from "@/components/linked-button";
-import { useViewportSize } from "@mantine/hooks";
-import type { PresidentialDocument } from "@/app/tools/presidential-documents/actions";
+import type { FedRegDocument } from "@/app/tools/federal-register/actions";
 
 export function Document({
   document,
   idx,
 }: {
-  document: PresidentialDocument;
+  document: FedRegDocument;
   idx: number;
 }) {
-  const { width } = useViewportSize();
   return (
     <Box>
       <motion.div
@@ -36,46 +43,66 @@ export function Document({
         >
           <Title order={3}>{document.title}</Title>
           <Divider color="violet" mb="md" />
-          <Text mb="md">{document.abstract}</Text>
-          <Group
-            justify="space-between"
-            align={document.abstract ? "flex-end" : "flex-start"}
-          >
-            <Box>
-              <Text c="dimmed">{document.type}</Text>
-              <Text c="dimmed" size="sm">
-                Published: {document.publication_date}
-              </Text>
-            </Box>
-            <Box w={width < 420 ? "100%" : "auto"}>
-              <Flex gap="xs" justify="flex-end" direction="column">
-                <LinkedButton
-                  disabled={!document.html_url}
-                  href={document.html_url}
-                  buttonProps={{ variant: "light" }}
-                  target="_blank"
-                >
-                  View Online
-                </LinkedButton>
-                <LinkedButton
-                  disabled={!document.pdf_url}
-                  href={document.pdf_url}
-                  buttonProps={{ variant: "light" }}
-                  target="_blank"
-                >
-                  View PDF
-                </LinkedButton>
-                <LinkedButton
-                  disabled={!document.public_inspection_pdf_url}
-                  href={document.public_inspection_pdf_url}
-                  buttonProps={{ variant: "light" }}
-                  target="_blank"
-                >
-                  Inspection Document
-                </LinkedButton>
+
+          <Grid>
+            <Grid.Col span={{ base: 12, xs: 8 }}>
+              <Box>
+                <Text c="dimmed">{document.type}</Text>
+                <Text c="dimmed" size="sm">
+                  Published: {document.publication_date}
+                </Text>
+                <Box mt="xs">
+                  <Text c="dimmed" size="xs" mb="xs">
+                    Agencies:
+                  </Text>
+                  {document.agencies.map((agency) => (
+                    <Badge key={agency.id} p="xs" variant="light" mr="xs">
+                      {agency.name}
+                    </Badge>
+                  ))}
+                </Box>
+              </Box>
+            </Grid.Col>
+            <Grid.Col span={{ base: 12, xs: 4 }}>
+              <Flex justify="flex-end" align="center">
+                <Box w={"100%"}>
+                  <Flex
+                    gap="xs"
+                    justify="flex-end"
+                    direction="column"
+                    w={"100%"}
+                  >
+                    <LinkedButton
+                      disabled={!document.html_url}
+                      href={document.html_url}
+                      buttonProps={{ variant: "light" }}
+                      target="_blank"
+                    >
+                      View Online
+                    </LinkedButton>
+                    <LinkedButton
+                      disabled={!document.pdf_url}
+                      href={document.pdf_url}
+                      buttonProps={{ variant: "light" }}
+                      target="_blank"
+                    >
+                      View PDF
+                    </LinkedButton>
+                    <LinkedButton
+                      hidden={!document.public_inspection_pdf_url}
+                      disabled={!document.public_inspection_pdf_url}
+                      href={document.public_inspection_pdf_url}
+                      buttonProps={{ variant: "light" }}
+                      target="_blank"
+                    >
+                      Inspection Document
+                    </LinkedButton>
+                  </Flex>
+                </Box>
               </Flex>
-            </Box>
-          </Group>
+            </Grid.Col>
+          </Grid>
+          <Text mt="xl">{document.abstract}</Text>
         </Paper>
       </motion.div>
     </Box>

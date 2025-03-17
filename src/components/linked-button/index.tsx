@@ -9,16 +9,22 @@ export default function LinkedButton({
   target,
   children,
   disabled,
+  hidden,
   icon,
 }: Readonly<{
   href: string;
   buttonProps?: ButtonProps;
+  hidden?: boolean;
   target?: string;
   disabled?: boolean;
   children?: React.ReactNode;
   icon?: React.ReactNode;
 }>) {
   const router = useRouter();
+
+  if (hidden) {
+    return null;
+  }
 
   return (
     <Button

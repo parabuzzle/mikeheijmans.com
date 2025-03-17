@@ -70,7 +70,7 @@ export default function ClientRendered() {
         }}
       >
         <Link
-          href="/tools/presidential-documents"
+          href="/tools/federal-register"
           style={{ textDecoration: "none", color: "light-dark(#000, #ffff)" }}
         >
           <Paper
@@ -81,20 +81,18 @@ export default function ClientRendered() {
             style={{ backgroundColor: "light-dark(#efedff, #000000)" }}
           >
             <Group gap="sm">
-              <Title order={4}>Presidential Documents</Title>
+              <Title order={4}>U.S. Federal Register Tool</Title>
               <IconExternalLink size="1.5em" />
             </Group>
             <Divider mb="sm" color="violet" />
             <Text c="dimmed">
-              This tool searches the Federal Register for presidential
-              documents.
+              This tool searches the US Federal Register for documents.
             </Text>
             <Text mt="lg" mb="xl">
-              I found that I&apos;ve been struggling to keep up with all the
-              things coming out of the Executive Office lately so I built this
-              tool to help me keep track of the documents as they are published
-              to the Federal Register. This shows all documents signed by the
-              current President.
+              From Presidential Orders to Rule Proposals by various agencies,
+              this tool helps me keep track of the documents as they are
+              published to the Federal Register to keep up with what&apos;s
+              happening on Capital Hill.
             </Text>
           </Paper>
         </Link>
