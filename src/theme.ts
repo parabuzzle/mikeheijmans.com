@@ -36,6 +36,11 @@ const theme = createTheme({
         size: defaultInputSize,
       },
     },
+    Select: {
+      defaultProps: {
+        size: defaultInputSize,
+      },
+    },
   },
   colors: {
     dark: [
