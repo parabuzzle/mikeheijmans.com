@@ -23,12 +23,22 @@ export default function Location({ location }: { location?: string }) {
         continue;
       }
 
+      if (key === "page") {
+        continue;
+      }
+
       qParams.set(key, value);
     }
     if (value !== "" && value !== undefined) {
       qParams.set("location", debouncedTerm);
     }
-    qParams.set("page", "1");
+
+    if (
+      searchParams.get("page") &&
+      (searchParams.get("page") as string) > "1"
+    ) {
+      qParams.set("page", "1");
+    }
     router.push(`${pathname}?${qParams.toString()}`);
   };
 
