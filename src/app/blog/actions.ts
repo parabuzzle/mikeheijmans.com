@@ -57,6 +57,9 @@ function processPost(file: string): Post {
 }
 
 async function readPosts() {
+  //log current directory
+  console.log(fs.readdirSync("."));
+
   const files = fs.readdirSync("_posts");
 
   const posts = files.map((file) => {
@@ -95,6 +98,7 @@ async function readPosts() {
 }
 
 async function readPost(slug: string) {
+  console.log(fs.readdirSync("."));
   const files = fs.readdirSync("_posts");
   const post = files.find((file) => {
     return file.includes(slug);

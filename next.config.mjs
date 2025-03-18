@@ -4,6 +4,11 @@ import createMDX from "@next/mdx";
 const nextConfig = {
   transpilePackages: ["next-mdx-remote"],
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  outputFileTracingIncludes: {
+    "/blog": ["./_posts/**/*"],
+    "/blog/post/[slug]": ["./_posts/**/*"],
+  },
+
   env: {
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     CONTACT_EMAIL: process.env.CONTACT_EMAIL,
