@@ -20,7 +20,7 @@ export interface Post {
 }
 
 function processPost(file: string): Post {
-  const markdownRaw = fs.readFileSync(`./src/app/blog/_posts/${file}`, "utf8");
+  const markdownRaw = fs.readFileSync(`_posts/${file}`, "utf8");
 
   const { attributes, body }: { attributes: PostAttributes; body: string } =
     fm(markdownRaw);
@@ -57,7 +57,7 @@ function processPost(file: string): Post {
 }
 
 async function readPosts() {
-  const files = fs.readdirSync("./src/app/blog/_posts");
+  const files = fs.readdirSync("_posts");
 
   const posts = files.map((file) => {
     if (!file.endsWith(".mdx")) {
@@ -95,7 +95,7 @@ async function readPosts() {
 }
 
 async function readPost(slug: string) {
-  const files = fs.readdirSync("./src/app/blog/_posts");
+  const files = fs.readdirSync("_posts");
   const post = files.find((file) => {
     return file.includes(slug);
   });
