@@ -1,5 +1,6 @@
 "use client";
-import { Paper, Title, Text, Divider, Flex } from "@mantine/core";
+import { useState } from "react";
+import { Paper, Title, Text, Divider, Flex, Loader } from "@mantine/core";
 import { motion } from "motion/react";
 import { useRouter } from "next/navigation";
 import type { Post } from "@/app/blog/actions";
@@ -9,6 +10,7 @@ export function PostCard({ post, delay }: { post: Post; delay?: number }) {
   const { title } = post.attributes;
   const { publishDate, preview } = post;
 
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   return (
@@ -44,7 +46,10 @@ export function PostCard({ post, delay }: { post: Post; delay?: number }) {
             shadow="sm"
             mb="xl"
             className={classes.paper}
-            onClick={() => router.push(`/blog/post/${post.slug}`)}
+            onClick={() => {
+              setLoading(true);
+              router.push(`/blog/post/${post.slug}`);
+            }}
           >
             <Title order={4} style={{ marginBottom: 0 }}>
               {title}
@@ -55,7 +60,8 @@ export function PostCard({ post, delay }: { post: Post; delay?: number }) {
             <Divider color="violet" mb="md" />
             <Text>{preview}</Text>
             <Flex justify="flex-end">
-              <Text size="sm">Read more...</Text>
+              {loading && <Loader size="sm" />}
+              {!loading && <Text size="sm">Read more...</Text>}
             </Flex>
           </Paper>
         </a>
