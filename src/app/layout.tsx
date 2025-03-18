@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "@mantine/core/styles.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 import {
   MantineProvider,
   ColorSchemeScript,
@@ -41,6 +42,7 @@ export default function RootLayout({
       <body>
         <MantineProvider theme={theme} defaultColorScheme="dark">
           <SpeedInsights />
+          <Analytics />
           <TiingoProvider>
             <ModalsProvider>
               <Notifications />
