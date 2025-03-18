@@ -4,6 +4,7 @@ import fm from "front-matter";
 
 export interface PostAttributes extends Record<string, unknown> {
   title: string;
+  readingTime: number;
   description?: string;
   tags?: string[];
   image?: string;
@@ -17,6 +18,13 @@ export interface Post {
   fileName: string;
   publishDate: Date;
   attributes: PostAttributes;
+}
+
+function readingTime(text: string) {
+  const wpm = 225;
+  const words = text.trim().split(/\s+/).length;
+  const time = Math.ceil(words / wpm);
+  return time;
 }
 
 function processPost(file: string): Post {
@@ -62,6 +70,8 @@ function processPost(file: string): Post {
   }
 
   const filteredBody = body.replace(/<!--.*?-->/gs, ""); // remove comments
+
+  attributes.readingTime = readingTime(filteredBody);
 
   return {
     fileName: file,

@@ -54,9 +54,14 @@ export function PostCard({ post, delay }: { post: Post; delay?: number }) {
             <Title order={4} style={{ marginBottom: 0 }}>
               {title}
             </Title>
-            <Text c="dimmed" size="sm">
-              {new Date(publishDate).toLocaleDateString()}
-            </Text>
+            <Flex justify="space-between">
+              <Text c="dimmed" size="sm">
+                {new Date(publishDate).toLocaleDateString()}
+              </Text>
+              <Text c="dimmed" size="sm">
+                {post.attributes.readingTime} min read
+              </Text>
+            </Flex>
             <Divider color="violet" mb="md" />
             <Text>{preview}</Text>
             <Flex justify="flex-end">

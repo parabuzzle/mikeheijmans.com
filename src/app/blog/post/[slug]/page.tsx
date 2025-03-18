@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { Box, Text, Title, Divider } from "@mantine/core";
+import { Box, Text, Title, Divider, Flex } from "@mantine/core";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
 import { getPost } from "../../actions";
@@ -42,7 +42,14 @@ export default async function RemoteMdxPage({ params }: Props) {
   return (
     <Box>
       <Title>{post.attributes.title}</Title>
-      <Text c="dimmed">{new Date(post.publishDate).toLocaleDateString()}</Text>
+      <Flex justify="space-between">
+        <Text c="dimmed">
+          {new Date(post.publishDate).toLocaleDateString()}
+        </Text>
+        <Text c="dimmed" size="sm">
+          {post.attributes.readingTime} min read
+        </Text>
+      </Flex>
       <Divider color="violet" mb="md" />
 
       <MDXRemote
