@@ -52,6 +52,15 @@ function processPost(file: string): Post {
       .join(" ");
   }
 
+  // legacy compatibility
+  if (attributes.og_image) {
+    attributes.image = attributes.og_image as string;
+  }
+
+  if (attributes.og_description) {
+    attributes.description = attributes.og_description as string;
+  }
+
   const filteredBody = body.replace(/<!--.*?-->/gs, ""); // remove comments
 
   return {

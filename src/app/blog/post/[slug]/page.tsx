@@ -22,9 +22,10 @@ Promise<Metadata> {
 
   return {
     title: post?.attributes.title,
-    description: post?.preview,
+    description: post?.attributes.description || post?.preview,
     openGraph: {
       images: post?.attributes.image,
+      type: "article",
     },
   };
 }
