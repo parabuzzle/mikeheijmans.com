@@ -5,8 +5,8 @@ const nextConfig = {
   transpilePackages: ["next-mdx-remote"],
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   outputFileTracingIncludes: {
-    "/blog": ["./_posts/**/*"],
-    "/blog/post/[slug]": ["./_posts/**/*"],
+    "/blog": ["./blog_posts/**/*"],
+    "/blog/post/[slug]": ["./blog_posts/**/*"],
   },
 
   env: {
@@ -25,6 +25,10 @@ const withMDX = createMDX({
       [
         "rehype-pretty-code",
         {
+          defaultLang: {
+            block: "plaintext",
+            inline: "plaintext",
+          },
           theme: { dark: "synthwave-84", light: "material-theme-lighter" },
         },
       ],

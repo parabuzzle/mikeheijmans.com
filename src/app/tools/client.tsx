@@ -1,7 +1,6 @@
 "use client";
 import { Box, Text, Title, Paper, Divider, Group } from "@mantine/core";
 import { motion } from "motion/react";
-import { IconExternalLink } from "@tabler/icons-react";
 import Link from "next/link";
 
 export default function ClientRendered() {
@@ -33,7 +32,6 @@ export default function ClientRendered() {
           >
             <Group gap="sm">
               <Title order={4}>Trade Calculator</Title>
-              <IconExternalLink size="1.5em" />
             </Group>
             <Divider mb="sm" color="violet" />
             <Text c="dimmed">
@@ -82,7 +80,6 @@ export default function ClientRendered() {
           >
             <Group gap="sm">
               <Title order={4}>U.S. Federal Register Tool</Title>
-              <IconExternalLink size="1.5em" />
             </Group>
             <Divider mb="sm" color="violet" />
             <Text c="dimmed">

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { Box, Text, Title } from "@mantine/core";
-//import { listPosts } from "./actions";
+import { PostCard } from "@/components/blog/post-card";
+import { listPosts } from "./actions";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  //const posts = await listPosts();
+  const posts = await listPosts();
 
   return (
     <Box>
@@ -19,7 +20,14 @@ export default async function Page() {
         forget to write blog posts. But when I do, they&apos;ll show up here.
       </Text>
 
-      <Text mb="md">blog posts go here</Text>
+      <Box>
+        {posts.length === 0 && (
+          <Text c="dimmed">No posts to show right now.</Text>
+        )}
+        {posts.map((post, idx) => (
+          <PostCard key={post.slug} post={post} delay={idx} />
+        ))}
+      </Box>
     </Box>
   );
 }

@@ -20,20 +20,28 @@ export interface Post {
 }
 
 function processPost(file: string): Post {
-  const markdownRaw = fs.readFileSync(`_posts/${file}`, "utf8");
+  const markdownRaw = fs.readFileSync(`blog_posts/${file}`, "utf8");
 
   const { attributes, body }: { attributes: PostAttributes; body: string } =
     fm(markdownRaw);
 
-  const preview = body.split("<!-- truncate -->")[0];
-  const [year, month, day] = file.replace(".mdx", "").split("-").slice(0, 3);
+  const prevSplit = body.split("<!-- truncate -->");
+  let preview =
+    prevSplit.length > 1
+      ? prevSplit[0]
+      : body.split(" ").slice(0, 50).join(" ") + "...";
+
+  if (attributes.preview) {
+    preview = attributes.preview as string;
+  }
+  const [year, month, day] = file.replace(".md", "").split("-").slice(0, 3);
   let publishDate = new Date(`${year}-${month}-${day}`);
 
   if (attributes.date) {
     publishDate = new Date(attributes.date);
   }
 
-  const slug = file.replace(".mdx", "").split("-").slice(3).join("-");
+  const slug = file.replace(".md", "").split("-").slice(3).join("-");
 
   if (!attributes.title) {
     attributes.title = slug
@@ -57,13 +65,10 @@ function processPost(file: string): Post {
 }
 
 async function readPosts() {
-  //log current directory
-  console.log(fs.readdirSync("."));
-
-  const files = fs.readdirSync("_posts");
+  const files = fs.readdirSync("blog_posts");
 
   const posts = files.map((file) => {
-    if (!file.endsWith(".mdx")) {
+    if (!file.endsWith(".md")) {
       return;
     }
 
@@ -94,12 +99,14 @@ async function readPosts() {
       : 0;
   });
 
-  return posts;
+  // remove any undefined posts
+  return posts.filter((post) => {
+    return post !== undefined;
+  });
 }
 
 async function readPost(slug: string) {
-  console.log(fs.readdirSync("."));
-  const files = fs.readdirSync("_posts");
+  const files = fs.readdirSync("blog_posts");
   const post = files.find((file) => {
     return file.includes(slug);
   });
@@ -107,8 +114,6 @@ async function readPost(slug: string) {
   if (!post) {
     return null;
   }
-
-  console.log(post);
 
   return processPost(post);
 }
@@ -124,8 +129,6 @@ export async function listPosts(tags?: string[]) {
       });
     });
   }
-
-  console.log(posts);
 
   return posts;
 }
