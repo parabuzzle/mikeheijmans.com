@@ -1,18 +1,33 @@
-import { Container, Box, Text, Title } from "@mantine/core";
+import { Metadata } from "next";
+import { Box, Text, Title } from "@mantine/core";
+import { PostCard } from "@/components/blog/post-card";
+import { listPosts } from "./actions";
 
-export default function Page() {
+export const metadata: Metadata = {
+  title: "Blog",
+  description: "Mike's personal blog posts.",
+};
+
+export default async function Page() {
+  const posts = await listPosts();
+
   return (
-    <Container>
+    <Box>
+      <Title order={1}>Blog</Title>
+
+      <Text c="dimmed" mb="md">
+        I am easily distracted by all the cool things I get to do and I often
+        forget to write blog posts. But when I do, they&apos;ll show up here.
+      </Text>
+
       <Box>
-        <Title order={1}>Blog</Title>
-
-        <Text c="dimmed" mb="md">
-          I am easily distracted by all the cool things I get to do and I often
-          forget to write blog posts. But when I do, they&apos;ll show up here.
-        </Text>
-
-        <Text mb="md">blog posts go here</Text>
+        {posts.length === 0 && (
+          <Text c="dimmed">No posts to show right now.</Text>
+        )}
+        {posts.map((post, idx) => (
+          <PostCard key={post.slug} post={post} delay={idx} />
+        ))}
       </Box>
-    </Container>
+    </Box>
   );
 }

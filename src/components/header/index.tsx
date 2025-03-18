@@ -16,7 +16,7 @@ import {
   IconTool,
   IconUserScreen,
   IconSun,
-  //IconBallpen,
+  IconBallpen,
 } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import { useDisclosure } from "@mantine/hooks";
@@ -38,12 +38,12 @@ const links = [
     icon: <IconUserScreen size={iconSize} />,
   },
   { link: "/tools", label: "Tools", icon: <IconTool size={iconSize} /> },
-  //{
-  //  link: "/blog",
-  //  label: "Blog",
-  //  target: "inline",
-  //  icon: <IconBallpen size={iconSize} />,
-  //},
+  {
+    link: "/blog",
+    label: "Blog",
+    target: "inline",
+    icon: <IconBallpen size={iconSize} />,
+  },
 ];
 
 export default function Header() {
