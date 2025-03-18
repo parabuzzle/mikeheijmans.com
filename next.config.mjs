@@ -2,7 +2,7 @@ import createMDX from "@next/mdx";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Configure `pageExtensions` to include markdown and MDX files
+  transpilePackages: ["next-mdx-remote"],
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   env: {
     RESEND_API_KEY: process.env.RESEND_API_KEY,
@@ -14,8 +14,17 @@ const nextConfig = {
 };
 
 const withMDX = createMDX({
-  // Add markdown plugins here, as desired
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [
+      [
+        "rehype-pretty-code",
+        {
+          theme: { dark: "synthwave-84", light: "material-theme-lighter" },
+        },
+      ],
+    ],
+  },
 });
 
-// Merge MDX config with Next.js config
 export default withMDX(nextConfig);
