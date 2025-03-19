@@ -21,7 +21,7 @@ export interface Post {
 }
 
 function readingTime(text: string) {
-  const wpm = 225;
+  const wpm = 200;
   const words = text.trim().split(/\s+/).length;
   const time = Math.ceil(words / wpm);
   return time;
@@ -43,7 +43,8 @@ function processPost(file: string): Post {
     preview = attributes.preview as string;
   }
   const [year, month, day] = file.replace(".md", "").split("-").slice(0, 3);
-  let publishDate = new Date(`${year}-${month}-${day}`);
+
+  let publishDate = new Date(`${year}-${month}-${day} 10:00`);
 
   if (attributes.date) {
     publishDate = new Date(attributes.date);
