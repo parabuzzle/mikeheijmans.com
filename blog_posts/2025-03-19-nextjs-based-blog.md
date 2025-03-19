@@ -1,6 +1,7 @@
 ---
 title: Moving from Jekyll to NextJS and How I Did It
 preview: For over a decade I used Jekyll to power mikeheijmans.com and publish the occasional blog post. It turns out I'm pretty bad at consistently blogging and I always wanted my personal website to be more of a playground and showcase of things I play with in my free time. I'm a huge fan of NextJS and it seemed like a great engine for what I wanted for mikeheijmans.com. The missing piece was "jekyll-like" blogging. There are many ways to do it, this is how I did it.
+image: https://www.mikeheijmans.com/projects/next.png
 tags:
   - NextJS
   - Development

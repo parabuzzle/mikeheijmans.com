@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import { Metadata, ResolvingMetadata } from "next";
 import { Box, Text, Title, Divider, Flex } from "@mantine/core";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
@@ -9,22 +9,23 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({
-  params,
-}: Props): //parent: ResolvingMetadata
-Promise<Metadata> {
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
   // read route params
   const { slug } = await params;
   const post = await getPost(slug);
 
   // optionally access and extend (rather than replace) parent metadata
-  //const previousImages = (await parent).openGraph?.images || [];
+  const previousImages = (await parent).openGraph?.images || [];
+  const images = post?.attributes.image || previousImages;
 
   return {
     title: post?.attributes.title,
     description: post?.attributes.description || post?.preview,
     openGraph: {
-      images: post?.attributes.image,
+      images: images,
       type: "article",
     },
   };
