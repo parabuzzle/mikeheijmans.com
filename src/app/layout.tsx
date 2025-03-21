@@ -8,12 +8,14 @@ import {
   ColorSchemeScript,
   mantineHtmlProps,
   Box,
+  Container,
 } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { ModalsProvider } from "@mantine/modals";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { TiingoProvider } from "@/components/tiingo";
+import ReferrerHandler from "@/components/social/referrer-handler";
 import theme from "@/theme";
 import "./global.css";
 import "@mantine/notifications/styles.css";
@@ -56,6 +58,9 @@ export default function RootLayout({
                 }}
                 pb={200}
               >
+                <Container>
+                  <ReferrerHandler />
+                </Container>
                 {children}
               </Box>
               <Footer />
