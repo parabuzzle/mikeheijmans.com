@@ -1,5 +1,5 @@
 ---
-title: Moving from Jekyll to NextJS and How I Did It
+title: Moving from Jekyll to NextJS
 preview: For over a decade I used Jekyll to power mikeheijmans.com and publish the occasional blog post. It turns out I'm pretty bad at consistently blogging and I always wanted my personal website to be more of a playground and showcase of things I play with in my free time. I'm a huge fan of NextJS and it seemed like a great engine for what I wanted for mikeheijmans.com. The missing piece was "jekyll-like" blogging. There are many ways to do it, this is how I did it.
 image: https://www.mikeheijmans.com/projects/next.png
 tags:
@@ -11,20 +11,20 @@ For over a decade I used [Jekyll](https://jekyllrb.com) to power mikeheijmans.co
 
 # The Problem
 
-Jekyll is really a static site generator focused as a blogging engine. If you look at the post count for the last 11 years, you'll see that I'm not a very good blogger. What I needed was a full on web application engine that will serve blog posts, and ideally, supports [markdown](https://www.markdownguide.org/basic-syntax/) and [frontmatter](https://jekyllrb.com/docs/front-matter/) so I can just drop-in all the legacy posts from my jekyll repo. I didn't want to do anything to "migrate" my existing content.
+Jekyll is was originally created as a blogging engine that would generate a static website for hosting on cheap (or free) static site hosting. If you look at my post count for the last 11 years, you'll see that I'm not a very consistent blogger. What _I_ needed was a full-on web application engine that will serve blog posts, and ideally, supports [markdown](https://www.markdownguide.org/basic-syntax/) and [frontmatter](https://jekyllrb.com/docs/front-matter/) so I can just drop-in all the legacy posts from my original jekyll-based website repo. I didn't want to do anything to "migrate" my existing post content.
 
-I migrated mikeheijmans.com to a NextJS based webapp running on Vercel. I have some plans in the works that require a full on webapp with a database and such, so stay tuned for that. I now needed a way to jekyll markdown blog posts.
+I switched mikeheijmans.com to a NextJS based webapp running on Vercel. I have some plans in the works that require a full on webapp with a database and such, so stay tuned for that. I now needed a way to handle a collection of jekyll markdown blog posts.
 
-## The Requirements
+# The Requirements
 
-- Support Markdown format
+- Support Markdown
 - Support Frontmatter metadata
 - Get its content from Markdown files saved in the source repo
-- Dynamic listing and loading without a database or manually edited index file
+- Dynamic listing and loading without a database
 
 Let's break some of these down and discuss the possible solutions for each.
 
-## Support Markdown Format
+## Support Markdown
 
 This seems pretty straight forward on the surface. There are many ways of accomplishing this. NextJS supports MDX. You can read their docs on how to set it up [here](https://nextjs.org/docs/app/building-your-application/configuring/mdx).
 
@@ -79,11 +79,11 @@ It would be a very organized way of doing things... but not the way _I_ want to 
 
 If you're using the "NextJS" way, you wouldn't use frontmatter for metadata. You would export your metadata in your mdx file.
 
-There are some plugins for frontmatter and there information in the NextJS [docs](https://nextjs.org/docs/app/building-your-application/configuring/mdx#frontmatter).
+There are some plugins for frontmatter, and the information is well documented in the NextJS [docs](https://nextjs.org/docs/app/building-your-application/configuring/mdx#frontmatter).
 
 Most of these solutions don't work when dynamically loading, which we'll talk about later.
 
-The reason I want to support frontmatter is because all of blog posts have frontmatter already! If you're porting a Jekyll site to NextJS, you'll find that frontmatter is pretty important.
+The reason I want to support frontmatter is because all of blog posts have frontmatter already! If you're porting a Jekyll site to NextJS, you'll find that frontmatter is probably pretty important.
 
 ## Get Content from the Filesystem
 
@@ -110,7 +110,7 @@ export default async function Page() {
 
 This works when you know what file to load... so how do we know what file to load?
 
-_It also doesn't work on Vercel without other changes we will discuss later_
+_It **doesn't work on Vercel** without other changes we will discuss later_
 
 ## Dynamic Listing
 
@@ -157,9 +157,9 @@ If you are **only** going to use `RemoteMDX`, this is _all_ you need to do. Sett
 
 So I decided to put the blog posts in a top-level directory in my repo called `blog_posts`. This is just to ease some vercel specific requirements I'll explain shortly.
 
-As I said earlier, I used a server action to handle getting the markdown info. I prefer server actions over api routes because I don't want to have a public api that lists files and their contents.
+As I said earlier, I used a server action to handle getting the markdown info. I prefer server actions over api routes because I don't want to have a public api that lists files and their contents. Its probably a good security practice in general not to do that.
 
-So created a file called `actions.ts` in my blog directory:
+So I created a file called `actions.ts` in my blog directory:
 
 ```plaintext
  my-project
@@ -191,6 +191,7 @@ async function listPosts() {
     // I'm also splitting the file name to create publish date
     // and handling legacy frontmatter keys to the new metadata structure
     // I defined that I wanted (ie: og_image => image .. etc)
+    // --> this is documented later in the blog post <--
     const { preview, attributes, publishDate, slug } = processPost(file);
 
     // only published posts
@@ -224,7 +225,7 @@ async function listPosts() {
 }
 ```
 
-I then use this server action in my `page.tsx` like this:
+I then use this server action in my `page.tsx` doing something like this:
 
 ```ts title="./page.tsx"
 import { listPosts } from "./actions";
@@ -243,7 +244,7 @@ export default async function Page() {
 }
 ```
 
-This does the serverside loading of all posts with their read metadata from the frontmatter.
+This does the serverside loading of all posts with their metadata from the frontmatter in the file.
 
 ### Frontmatter
 
@@ -293,7 +294,7 @@ async function getPost(slug: string) {
 }
 ```
 
-As you can see, we are taking a slug and finding the file that matches the slug. This is the cheap and dirty way of doing it, but it works. The keen-eyed will see a slight problem this method. It relies on file names being unique enough to prevent multiple matches which is fine for now, but longer term this could bite me (or you).
+As you can see, we are taking a slug and finding the file that matches the slug. This is the cheap and dirty way of doing it, but it works. The keen-eyed will see a slight problem with this method. It relies on file names being unique enough to prevent multiple matches which is fine for now, but longer term this could bite me (or you).
 
 For the post page I setup the route like this:
 
@@ -407,18 +408,42 @@ export default async function Page({ params }: Props) {
 }
 ```
 
-And there you have it.. a working blog in NextJS that works like Jekyll.
+### MDXRemote Doesn't Work Out-of-the-Box
 
-## Vercel - The Final Boss
+So you visited the page and you get a blank page or a 500 error and the logs show:
 
-But wait! It works in dev but not on Vercel! You see, Vercel compiles all the various server-side rendering and actions as lambda functions. Those `blog_post` files aren't pulled in! So you will get a "file not found" error from the `fs` functions. We need to add some configuration to `next.config.mjs` to tell Vercel to include the static files when compiling the functions.
+```terminal
+ ⨯ [TypeError: Cannot read properties of undefined (reading 'stack')] {
+  digest: '2271087393'
+}
+ ⨯ [Error: failed to pipe response] {
+  [cause]: [TypeError: Cannot read properties of undefined (reading 'stack')] {
+    digest: '2271087393'
+  }
+}
+```
+
+It took a bit of googling around and reading through a bunch of bug reports and issues to find that you _will_ have to mess with the NextJS transpile pipeline... But don't worry, its a super easy fix. In your `next.config.mjs` file you need to tell NextJS to transpile the `next-mdx-remote` package like this:
+
+```ts title="./next.config.mjs"
+const nextConfig = {
+  transpilePackages: ["next-mdx-remote"],
+  ...
+};
+```
+
+And there you have it.. a working blog in NextJS that works with Jekyll markdown files.
+
+## Vercel - The _Real_ Final Boss
+
+But wait! It works in dev just fine, but when deployed to Vercel, it just returns a 500 error! What gives? You see, Vercel compiles all the various server-side rendering and actions as lambda functions. Those `blog_post` files aren't pulled in! So you will get a "file not found" error from the `fs` functions. We need to add some configuration to `next.config.mjs` to tell Vercel to include the static files when compiling the functions.
 
 In your config file we need to add the `outputFileTracingIncludes` to the config object:
 
 ```ts title="./next.config.mjs"
 const nextConfig = {
   transpilePackages: ["next-mdx-remote"],
-  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  ...
   outputFileTracingIncludes: {
     "/blog": ["./blog_posts/**/*"],
     "/blog/post/[slug]": ["./blog_posts/**/*"],
@@ -434,7 +459,7 @@ In conclusion, it was a ton of fun to figure out how to handle my old Jekyll blo
 
 ## A note on performance
 
-Because we're reading and loading the markdown dynamically through server actions, we are basically doing an api call to a lambda function which takes time. Then we feed the result data into `MDXRemote` which needs to generate the html during the request. This results in loading delays. I've setup the `loading.tsx` to display on the react suspense boundary, but if you did this using the "NextJS with MDX" way where you put a `page.mdx` in a folder named for the route slug... it would be compiled statically for server-side rendering and be super fast because no api calls or dynamic data needs to be handled. This is something to keep in mind. Also, because we are reading all the files to get metadata on the list page via the server action, this will get slower with more files. I don't see this being a problem in my case, but its worth considering if you are a blogging fiend. You could get clever and do pagination using the file name dates for ordering and only read a page worth of posts or just swich to the "right" way of doing this.
+Because we're reading and loading the markdown dynamically through server actions, we are basically doing an api call to a lambda function which takes time. Then we feed the result data into `MDXRemote` which needs to generate the html during the request. This results in additional loading delays. I've setup the `loading.tsx` to display on the react suspense boundary, but if you did this using the "NextJS with MDX" way, you would put a `page.mdx` in a folder named for the route slug... it would just be compiled statically for server-side rendering and be super fast because no api calls or dynamic data needs to be handled. Basically the rendered HTML is just sent to the user's browser as if it was just an HTML page on the server. This is something to keep in mind. Also, because we are reading all the files to get metadata on the list page via the server action, this will get slower with more files. I don't see this being a problem in my case, but its worth considering if you are a blogging fiend. You could get clever and do pagination using the file name dates for ordering and only read a page worth of posts or just switch to the "right" way of doing this.
 
 Anyway, I hope this helps someone understand how to bend NextJS to their will when it comes to markdown and MDX.
 
