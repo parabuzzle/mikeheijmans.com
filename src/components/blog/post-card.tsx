@@ -46,6 +46,7 @@ export function PostCard({ post, delay }: { post: Post; delay?: number }) {
             shadow="sm"
             mb="xl"
             className={classes.paper}
+            onMouseOver={() => router.prefetch(`/blog/post/${post.slug}`)}
             onClick={() => {
               setLoading(true);
               router.push(`/blog/post/${post.slug}`);
