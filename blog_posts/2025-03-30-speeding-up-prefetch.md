@@ -68,7 +68,7 @@ With it setup this way, we get no prefetching and therefore no performance gains
 
 # How Do We Fix This?
 
-If there's no way you can use the NextJS `Link` component, the prefetch function is provided as part of the router. So if add a `onMouseOver={() => router.prefetch(..)}` to the component you will get the prefetch performance magic provided by the `Link` component.
+If there's no way you can use the NextJS `Link` component, the prefetch function is provided as part of the NextRouter. So if you add a `onMouseOver={() => router.prefetch(..)}` to the component you will get the prefetch performance magic provided by the `Link` component.
 
 ```js
   return (
