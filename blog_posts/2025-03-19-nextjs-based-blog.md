@@ -11,7 +11,7 @@ For over a decade I used [Jekyll](https://jekyllrb.com) to power mikeheijmans.co
 
 # The Problem
 
-Jekyll is was originally created as a blogging engine that would generate a static website for hosting on cheap (or free) static site hosting. If you look at my post count for the last 11 years, you'll see that I'm not a very consistent blogger. What _I_ needed was a full-on web application engine that will serve blog posts, and ideally, supports [markdown](https://www.markdownguide.org/basic-syntax/) and [frontmatter](https://jekyllrb.com/docs/front-matter/) so I can just drop-in all the legacy posts from my original jekyll-based website repo. I didn't want to do anything to "migrate" my existing post content.
+Jekyll was originally created as a blogging engine that would generate a static website for hosting on cheap (or free) static site hosting. If you look at my post count for the last 11 years, you'll see that I'm not a very consistent blogger. What _I_ needed was a full-on web application engine that will serve blog posts, and ideally, supports [markdown](https://www.markdownguide.org/basic-syntax/) and [frontmatter](https://jekyllrb.com/docs/front-matter/) so I can just drop-in all the legacy posts from my original jekyll-based website repo. I didn't want to do anything to "migrate" my existing post content.
 
 I switched mikeheijmans.com to a NextJS based webapp running on Vercel. I have some plans in the works that require a full on webapp with a database and such, so stay tuned for that. I now needed a way to handle a collection of jekyll markdown blog posts.
 
