@@ -8,10 +8,6 @@ I've been working on a project that uses Coralogix for observability. The projec
 
 <!-- truncate -->
 
-```js
-export const test = "test";
-```
-
 _note: I happen to use Coralogix, but this should work with any observability platform that supports OpenTelemetry._
 
 ## First, The Architecture
