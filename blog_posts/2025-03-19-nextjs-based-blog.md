@@ -434,7 +434,7 @@ const nextConfig = {
 
 And there you have it.. a working blog in NextJS that works with Jekyll markdown files.
 
-## Vercel - The _Real_ Final Boss
+## Vercel - The Real Final Boss
 
 But wait! It works in dev just fine, but when deployed to Vercel, it just returns a 500 error! What gives? You see, Vercel compiles all the various server-side rendering and actions as lambda functions. Those `blog_post` files aren't pulled in! So you will get a "file not found" error from the `fs` functions. We need to add some configuration to `next.config.mjs` to tell Vercel to include the static files when compiling the functions.
 
