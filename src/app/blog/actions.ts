@@ -9,6 +9,7 @@ export interface PostAttributes extends Record<string, unknown> {
   tags?: string[];
   image?: string;
   date?: string;
+  toc?: string;
 }
 
 export interface Post {
@@ -59,6 +60,13 @@ function processPost(file: string): Post {
         return word.charAt(0).toUpperCase() + word.slice(1);
       })
       .join(" ");
+  }
+
+  if (attributes.toc) {
+    // parse the toc markdown
+    //const toc = attributes.toc as string;
+    //const { _, body }: {body: string } =
+    //fm(attributes.toc as string);
   }
 
   // legacy compatibility

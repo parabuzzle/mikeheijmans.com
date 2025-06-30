@@ -2,7 +2,9 @@ import { Metadata, ResolvingMetadata } from "next";
 import { Box, Text, Title, Divider, Flex } from "@mantine/core";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
+import { H1, H2, H3, H4 } from "./headings";
 import { getPost } from "../../actions";
+import TableOfContents from "./toc";
 import rehypePrettyCode from "rehype-pretty-code";
 
 interface Props {
@@ -53,8 +55,13 @@ export default async function RemoteMdxPage({ params }: Props) {
       </Flex>
       <Divider color="violet" mb="md" />
 
+      {post.attributes.toc && (
+        <TableOfContents body={<MDXRemote source={post.attributes.toc} />} />
+      )}
+
       <MDXRemote
         source={post.body}
+        components={{ h1: H1, h2: H2, h3: H3, h4: H4 }}
         options={{
           parseFrontmatter: true,
           mdxOptions: {

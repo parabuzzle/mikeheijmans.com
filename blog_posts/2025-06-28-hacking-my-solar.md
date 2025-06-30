@@ -5,13 +5,32 @@ tags:
   - Home Assistant
   - Raspberry Pi
   - Home Automation
+
+toc: >
+  - [Getting the Data](#getting-the-data)
+    - [Installing the Pi](#installing-the-pi)
+  - [Processing the Data](#processing-the-data)
+    - [The Data Model](#the-data-model)
+    - [MQTT](#mqtt)
+    - [Python Script](#python-script)
+      - [Configuring the Script](#configuring-the-script)
+      - [What the script is doing](#what-the-script-is-doing)
+      - [The Results in Home Assistant](#the-results-in-home-assistant)
+      - [Setting it up as a Service](#setting-it-up-as-a-service)
+      - [Protecting the Pi](#protecting-the-pi)
+  - [Tie It All Together](#tie-it-all-together)
+    - [House Keeping](#house-keeping)
+      - [Rename the Meter Devices](#rename-the-meter-devices)
+      - [Entities to Rename](#entities-to-rename)
+    - [Setup the Energy Dashboard](#setup-the-energy-dashboard)
+  - [Additional Dashboards](#additional-dashboards)
+    - [Getting Accurate Grid Side Power Numbers](#getting-accurate-grid-side-power-numbers)
+  - [Conclusion and What's Next](#conclusion-and-whats-next)
 ---
 
 I, like many people, have a SunPower solar system on my house. In the past year, SunPower filed for bankruptcy and all their solar management was transferred to SunStrong. The problem I have with SunStrong is that they want you to pay for their monitoring services if you want any sort of historical data. I wouldn't mind this if I could get to the data myself, but I can't. You see the power monitor that sends the data doesn't expose the data on the network, it just sends it to SunStrong directly over the internet. I can't even get the data from SunStrong because they don't offer an API for it. My system is paid off and I own all the equipment, but the data it produces is held hostage from me.
 
 <!-- truncate -->
-
-![SunStrong Subscription Page](/img/postimgs/sunstrong.jpg)
 
 Don't get me wrong, I don't mind paying for a service to store data in the cloud, I know how much it costs to store things and develop tools to make sense of the data. I just want the _option_ to harvest my own data for my own purposes. Without this option, its more of an extortion. Plus, they are storing the historical anyway and using it for their own data science stuff.. But anyway, I digress. After a bunch of internet searching I found a way to get **my** data out of the system locally.
 
@@ -303,7 +322,7 @@ So the grid side numbers are tracked on both phases of the power. So you'll need
 
 If you navigate to "Settings" --> "Devices & Services" and then click on "Helpers" on the top you can create a new helper to "combine entities". Select the 2 entities and make sure you select "Sum" as the "Statistic Characteristic" to get it to do the correct math.
 
-For my "Total Real Power" graph I had to combine the `p_3phsum_kw` or Average Real Power on both the Consumption and Production meters to get accurate number.
+For my "Total Real Power" graph I had to combine the `p_3phsum_kw` or Average Real Power on both the Consumption and Production meters to get an accurate number.
 
 # Conclusion and What's Next
 
