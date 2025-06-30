@@ -53,7 +53,7 @@ export default function RootLayout({
                 style={{
                   zIndex: 10,
                   backgroundColor: "var(--mantine-color-body)",
-                  marginBottom: 120,
+                  marginBottom: 180,
                   minHeight: "100vh",
                 }}
                 pb={200}

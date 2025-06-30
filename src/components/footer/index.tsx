@@ -8,7 +8,7 @@ export default function Footer() {
     <Box
       p="xl"
       ta="center"
-      h="120px"
+      h="180px"
       className={classes.footer}
       style={{ position: "fixed", bottom: "0px", width: "100%", zIndex: -1 }}
     >

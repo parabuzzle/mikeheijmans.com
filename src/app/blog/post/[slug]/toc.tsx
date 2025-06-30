@@ -9,7 +9,7 @@ export default function TableOfContents({ body }: { body: React.ReactNode }) {
   const [scroll] = useWindowScroll();
   const { width } = useViewportSize();
 
-  const position = width / 2 - 65; // Center the button horizontally
+  const position = width / 2 - 73; // Center the button horizontally
 
   return (
     <Box>
