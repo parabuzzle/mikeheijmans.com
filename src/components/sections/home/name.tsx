@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { Box, Text, Title, Avatar, Group } from "@mantine/core";
 
 export function Name() {
-  const easing = [0, 0.71, 0.1, 1.01];
+  const easing = [0, 0.71, 0.1, 1.01] as const;
 
   return (
     <Box>

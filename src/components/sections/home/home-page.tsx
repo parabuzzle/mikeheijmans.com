@@ -9,7 +9,7 @@ import {
   Connect,
 } from "@/components/sections/home";
 
-const easing = [0, 0.71, 0.2, 1.01];
+const easing = [0, 0.71, 0.2, 1.01] as const;
 
 export function HomePage() {
   return (
