@@ -17,7 +17,7 @@ toc: >
   - [Conclusion](#conclusion)
 ---
 
-In my [last post](/blog/post/llm-coding-context-management), I talked about using requirements markdown files as context for AI coding sessions and briefly mentioned primacy and recency bias. I want to go deeper on this because understanding how these biases work in AI conversations has fundamentally changed how I use AI coding assistants. Once you get this, a lot of the frustration people have with AI coding tools just melts away.
+In my last post about context management, I talked about using requirements markdown files as context for AI coding sessions and briefly mentioned primacy and recency bias. I want to go deeper on this because understanding how these biases work in AI conversations has fundamentally changed how I use AI coding assistants. Once you get this, a lot of the frustration people have with AI coding tools just melts away.
 
 <!-- truncate -->
 
