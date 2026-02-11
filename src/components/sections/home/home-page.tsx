@@ -26,16 +26,6 @@ export function HomePage() {
           <Divider color="violet" mb="xl" />
         </motion.div>
 
-        <section id="current-role">
-          <motion.div
-            initial={{ opacity: 0, scale: 1, y: 30 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ delay: 1, duration: 2 }}
-          >
-            <CurrentRole />
-          </motion.div>
-        </section>
-
         <section id="about">
           <motion.div
             initial={{ opacity: 0, scale: 1, y: 30 }}
