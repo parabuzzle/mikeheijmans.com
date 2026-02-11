@@ -43,7 +43,7 @@ This is why you'll see the AI suddenly "forget" something you told it earlier. I
 
 ## The Frustration Loop
 
-This is the root cause of the frustration loop I mentioned in my last post. You correct the AI, it seems to get it, but a few messages later it reverts to an earlier behavior or makes the same mistake in a different way. So you correct it again, more forcefully this time. It adjusts. Then it breaks something else that you thought was settled.
+This is the root cause of the frustration loop I mentioned in my [last post](https://www.mikeheijmans.com/blog/post/llm-coding-context-management). You correct the AI, it seems to get it, but a few messages later it reverts to an earlier behavior or makes the same mistake in a different way. So you correct it again, more forcefully this time. It adjusts. Then it breaks something else that you thought was settled.
 
 What's happening is a tug of war between primacy and recency. Your original prompt is pulling the model in one direction. Your latest correction is pulling it in another. And all those important clarifications in the middle? They're getting squeezed out.
 
