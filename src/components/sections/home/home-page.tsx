@@ -3,7 +3,6 @@ import { motion } from "motion/react";
 import { Container, Box, Divider } from "@mantine/core";
 import {
   About,
-  CurrentRole,
   Name,
   Management,
   FreeTime,
