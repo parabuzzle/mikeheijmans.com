@@ -1,6 +1,6 @@
 ---
 title: I Setup Coralogix RUM for an Online Store in 10 Minutes
-image: https://www.mikeheijmans.com/img/postimgs/rumhead.png
+image: https://www.mikeheijmans.com/img/postimgs/rumhead2.png
 tags:
   - Coralogix
   - Real User Monitoring
