@@ -1,5 +1,5 @@
 ---
-title: Using Coralogix RUM for Online Stores
+title: I Setup Coralogix RUM for an Online Store in 10 Minutes
 image: https://www.mikeheijmans.com/img/postimgs/rumhead.png
 tags:
   - Coralogix
@@ -7,7 +7,7 @@ tags:
   - Odoo
   - Observability
 toc: >
-  - Using Coralogix RUM for Online Stores
+  - Setup Coralogix RUM for an Online Store in 10 Minutes
     - [Real User Monitoring](#real-user-monitoring-rum)
     - [Setting up RUM](#setting-up-rum)
     - [Installing RUM on the Odoo Website](#installing-rum-on-the-odoo-website)
@@ -16,7 +16,7 @@ toc: >
       - [Optimize with a Cache](#optimize-with-a-cache)
 ---
 
-I have recently been working on a huge launch for my wife's company. One aspect of this was setting up her online storefront for people to purchase the hardware she manufactures. This store is hosted by Odoo, but we want to have the same observability that the web applications have. Mainly the Real User Monitoring and Session Recording for debugging and business insights.
+I have recently been working on a huge launch for my wife's company. One aspect of this was setting up her online storefront for people to purchase the hardware she manufactures. This store is hosted by Odoo, but we want to have the same observability that the web applications have. Mainly the Real User Monitoring and Session Recording for debugging and business insights. The craziest part is that it took me less than 15 minutes to get all this up and running!
 
 <!-- truncate -->
 
