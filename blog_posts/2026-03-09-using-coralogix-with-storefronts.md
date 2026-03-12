@@ -1,11 +1,19 @@
 ---
 title: Using Coralogix RUM for Online Stores
+image: https://www.mikeheijmans.com/img/postimgs/rumhead.png
 tags:
   - Coralogix
   - Real User Monitoring
   - Odoo
   - Observability
-toc:
+toc: >
+  - Using Coralogix RUM for Online Stores
+    - [Real User Monitoring](#real-user-monitoring-rum)
+    - [Setting up RUM](#setting-up-rum)
+    - [Installing RUM on the Odoo Website](#installing-rum-on-the-odoo-website)
+      - [A note on multiple loads](#a-note-on-multiple-loads)
+    - [Advanced Usage with Odoo](#advanced-usage-with-odoo)
+      - [Optimize with a Cache](#optimize-with-a-cache)
 ---
 
 I have recently been working on a huge launch for my wife's company. One aspect of this was setting up her online storefront for people to purchase the hardware she manufactures. This store is hosted by Odoo, but we want to have the same observability that the web applications have. Mainly the Real User Monitoring and Session Recording for debugging and business insights.
@@ -147,7 +155,7 @@ It's not advisable to initialize RUM more than 1 time per page load. There are g
         recordConsoleEvents: true,
         sessionRecordingSampleRate: 100,
       },
-    })
+    });
   }
 </script>
 ```
@@ -243,8 +251,8 @@ Here's the full bit of code we are running to capture session info for people us
         enable: true,
         autoStartSessionRecording: true,
         recordConsoleEvents: true,
-        sessionRecordingSampleRate: 100
-      }
+        sessionRecordingSampleRate: 100,
+      },
     });
 
     const CACHE_KEY = "odoo_session_info_cache_v1";
@@ -256,7 +264,7 @@ Here's the full bit of code we are running to capture session info for people us
         if (!raw) return null;
         const obj = JSON.parse(raw);
         if (!obj || !obj.cachedAt) return null;
-        if ((Date.now() - obj.cachedAt) > CACHE_TTL_MS) return null;
+        if (Date.now() - obj.cachedAt > CACHE_TTL_MS) return null;
         return obj;
       } catch {
         return null;
@@ -265,21 +273,26 @@ Here's the full bit of code we are running to capture session info for people us
 
     function writeCache(info) {
       try {
-        localStorage.setItem(CACHE_KEY, JSON.stringify({
-          cachedAt: Date.now(),
-          uid: info.uid,
-          partner_id: info.partner_id,
-          name: info.partner_display_name || info.name,
-          username: info.username,
-          is_public: !!info.is_public
-        }));
+        localStorage.setItem(
+          CACHE_KEY,
+          JSON.stringify({
+            cachedAt: Date.now(),
+            uid: info.uid,
+            partner_id: info.partner_id,
+            name: info.partner_display_name || info.name,
+            username: info.username,
+            is_public: !!info.is_public,
+          }),
+        );
       } catch {
         // ignore storage failures
       }
     }
 
     function clearCache() {
-      try { localStorage.removeItem(CACHE_KEY); } catch {}
+      try {
+        localStorage.removeItem(CACHE_KEY);
+      } catch {}
     }
 
     function applyToCoralogix(cached) {
@@ -289,13 +302,13 @@ Here's the full bit of code we are running to capture session info for people us
       window.CoralogixRum.setUserContext({
         user_id: `odoo_partner:${cached.partner_id}`,
         user_name: cached.name,
-        user_email: cached.username
+        user_email: cached.username,
       });
 
       window.CoralogixRum.setLabels({
         ...window.CoralogixRum.getLabels(),
         odoo_uid: cached.uid,
-        odoo_partner_id: cached.partner_id
+        odoo_partner_id: cached.partner_id,
       });
     }
 
@@ -311,7 +324,11 @@ Here's the full bit of code we are running to capture session info for people us
             method: "POST",
             headers: { "Content-Type": "application/json" },
             credentials: "same-origin",
-            body: JSON.stringify({ jsonrpc: "2.0", method: "call", params: {} })
+            body: JSON.stringify({
+              jsonrpc: "2.0",
+              method: "call",
+              params: {},
+            }),
           });
           const data = await res.json();
           const info = data?.result;

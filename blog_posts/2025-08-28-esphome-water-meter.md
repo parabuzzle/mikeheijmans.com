@@ -6,15 +6,16 @@ tags:
   - Raspberry Pi
   - Home Automation
 toc: >
-  - [Buy vs Build](#buy-vs-build)
-  - [What We Need](#what-we-need)
-    - [A Way to Meter the Flow](#a-way-to-meter-the-flow)
-      - [BSPT Woes](#bspt-woes)
-    - [A Way to Read the Meter](#a-way-to-read-the-meter)
-      - [ESP32 Wiring](#esp32-wiring)
-      - [ESPHome Configuration](#esphome-configuration)
-    - [Setting up the Dashboards](#setting-up-the-dashboards)
-    - [Extras](#extras)
+  - Creating a Whole Home Water Meter with ESPHome
+    - [Buy vs Build](#buy-vs-build)
+    - [What We Need](#what-we-need)
+      - [A Way to Meter the Flow](#a-way-to-meter-the-flow)
+        - [BSPT Woes](#bspt-woes)
+      - [A Way to Read the Meter](#a-way-to-read-the-meter)
+        - [ESP32 Wiring](#esp32-wiring)
+        - [ESPHome Configuration](#esphome-configuration)
+      - [Setting up the Dashboards](#setting-up-the-dashboards)
+      - [Extras](#extras)
 ---
 
 In my last post I got energy data into my home assistant but left off with wanting to get water data into the system to monitor water usage. In this post, I'm going to explain how I got it working and some of the pitfalls I ran into along the way.

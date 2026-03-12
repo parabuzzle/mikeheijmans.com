@@ -6,15 +6,16 @@ tags:
   - Artificial Intelligence
   - Development
 toc: >
-  - [What is Primacy and Recency Bias?](#what-is-primacy-and-recency-bias)
-  - [Why This Matters for AI Coding](#why-this-matters-for-ai-coding)
-    - [The Messy Middle](#the-messy-middle)
-    - [The Frustration Loop](#the-frustration-loop)
-  - [Emprace the Clear](#embrace-the-clear)
-    - [Your First Prompt is Everything](#your-first-prompt-is-everything)
-    - [Context That Lives Outside the Session](#context-that-lives-outside-the-session)
-  - [Putting It Into Practice](#putting-it-into-practice)
-  - [Conclusion](#conclusion)
+  - Understanding AI Primacy and Recency Bias
+    - [What is Primacy and Recency Bias?](#what-is-primacy-and-recency-bias)
+    - [Why This Matters for AI Coding](#why-this-matters-for-ai-coding)
+      - [The Messy Middle](#the-messy-middle)
+      - [The Frustration Loop](#the-frustration-loop)
+    - [Emprace the Clear](#embrace-the-clear)
+      - [Your First Prompt is Everything](#your-first-prompt-is-everything)
+      - [Context That Lives Outside the Session](#context-that-lives-outside-the-session)
+    - [Putting It Into Practice](#putting-it-into-practice)
+    - [Conclusion](#conclusion)
 ---
 
 In my last post about context management, I talked about using requirements markdown files as context for AI coding sessions and briefly mentioned primacy and recency bias. I want to go deeper on this because understanding how these biases work in AI conversations has fundamentally changed how I use AI coding assistants. Once you get this, a lot of the frustration people have with AI coding tools just melts away.

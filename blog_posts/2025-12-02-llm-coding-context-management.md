@@ -6,17 +6,18 @@ tags:
   - Artificial Intelligence
   - Development
 toc: >
-  - [The Problem with Vibe Coding](#the-problem-with-vibe-coding)
-  - [Requirements as Context](#requirements-as-context)
-    - [What Does This Look Like?](#what-does-this-look-like)
-  - [Why This Works So Well](#why-this-works-so-well)
-    - [You Have to Think Before You Build](#you-have-to-think-before-you-build)
-    - [It Stays with the Codebase](#it-stays-with-the-codebase)
-    - [It Becomes Your Documentation](#it-becomes-your-documentation)
-    - [It Gives the AI What It Actually Needs](#it-gives-the-ai-what-it-actually-needs)
-    - [The Value Compounds Over Time](#the-value-compounds-over-time)
-  - [How I Do It](#how-i-do-it)
-  - [Conclusion](#conclusion)
+  - AI Coding Context Management
+    - [The Problem with Vibe Coding](#the-problem-with-vibe-coding)
+    - [Requirements as Context](#requirements-as-context)
+      - [What Does This Look Like?](#what-does-this-look-like)
+    - [Why This Works So Well](#why-this-works-so-well)
+      - [You Have to Think Before You Build](#you-have-to-think-before-you-build)
+      - [It Stays with the Codebase](#it-stays-with-the-codebase)
+      - [It Becomes Your Documentation](#it-becomes-your-documentation)
+      - [It Gives the AI What It Actually Needs](#it-gives-the-ai-what-it-actually-needs)
+      - [The Value Compounds Over Time](#the-value-compounds-over-time)
+    - [How I Do It](#how-i-do-it)
+    - [Conclusion](#conclusion)
 ---
 
 I've been using AI coding assistants heavily for the last year or so. Claude Code, Copilot, Cursor, you name it. I've used them for everything from quick scripts to full features on production applications. Through all of this, I've landed on a practice that has made a massive difference in the quality of AI-assisted code on larger projects: writing requirements as markdown files and keeping them in the repo as context for the AI.
