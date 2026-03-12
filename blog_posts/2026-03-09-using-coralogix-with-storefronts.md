@@ -133,7 +133,7 @@ So the basic setup looks like this in the `<head>` section text editor:
 
 Hit save.. and hard refresh the page and you should see sessions flowing in Coralogix!
 
-![RUM In Action](/img/postimgs/rum.gif)
+<video src="/img/postimgs/rum.mp4" autoPlay loop muted playsInline width="100%" alt="RUM In Action" />
 
 ## A note on multiple loads
 
