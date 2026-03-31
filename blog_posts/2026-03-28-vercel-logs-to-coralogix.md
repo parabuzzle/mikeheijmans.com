@@ -131,6 +131,6 @@ For now, I will be spending the rest of the weekend playing with Otel traces, RU
 # Resources
 
 - Code: [https://github.com/parabuzzle/vercel-to-coralogix-bridge](https://github.com/parabuzzle/vercel-to-coralogix-bridge)
-- Docker Image: [https://hub.docker.com/repository/docker/parabuzzle/vercel-to-coralogix-bridge](https://hub.docker.com/repository/docker/parabuzzle/vercel-to-coralogix-bridge)
+- Docker Image: [https://hub.docker.com/r/parabuzzle/vercel-to-coralogix-bridge](https://hub.docker.com/r/parabuzzle/vercel-to-coralogix-bridge)
 - Vercel Docs: [https://vercel.com/docs/drains](https://vercel.com/docs/drains)
 - Coralogix Docs: [https://coralogix.com/docs/developer-portal/apis/log-ingestion/coralogix-rest-api-singles/](https://coralogix.com/docs/developer-portal/apis/log-ingestion/coralogix-rest-api-singles/)
