@@ -1,8 +1,11 @@
 "use client";
 import { motion } from "motion/react";
-import { Container, Box, Divider } from "@mantine/core";
+import { Anchor, Container, Box, Divider, Flex, Title } from "@mantine/core";
+import type { Post } from "@/app/blog/actions";
+import { PostCard } from "@/components/blog/post-card";
 import {
   About,
+  AppliedAI,
   Name,
   Management,
   FreeTime,
@@ -11,7 +14,36 @@ import {
 
 const easing = [0, 0.71, 0.2, 1.01] as const;
 
-export function HomePage() {
+function Section({
+  id,
+  title,
+  delay,
+  children,
+}: {
+  id: string;
+  title?: string;
+  delay: number;
+  children: React.ReactNode;
+}) {
+  return (
+    <section id={id}>
+      <motion.div
+        initial={{ opacity: 0, scale: 1, y: 30 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ delay, duration: 0.7, ease: easing }}
+      >
+        {title && (
+          <Title order={2} size="h3" mb="sm" c="violet.4">
+            {title}
+          </Title>
+        )}
+        {children}
+      </motion.div>
+    </section>
+  );
+}
+
+export function HomePage({ posts = [] }: { posts?: Post[] }) {
   return (
     <Container>
       <Box>
@@ -20,50 +52,43 @@ export function HomePage() {
         <motion.div
           initial={{ opacity: 1, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.8, duration: 1, ease: easing }}
+          transition={{ delay: 0.2, duration: 0.5, ease: easing }}
         >
           <Divider color="violet" mb="xl" />
         </motion.div>
 
-        <section id="about">
-          <motion.div
-            initial={{ opacity: 0, scale: 1, y: 30 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 2 }}
-          >
-            <About />
-          </motion.div>
-        </section>
+        <Section id="about" delay={0.15}>
+          <About />
+        </Section>
 
-        <section id="management">
-          <motion.div
-            initial={{ opacity: 0, scale: 1, y: 30 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ delay: 2, duration: 2 }}
-          >
-            <Management />
-          </motion.div>
-        </section>
+        <Section id="applied-ai" title="Applied AI" delay={0.3}>
+          <AppliedAI />
+        </Section>
 
-        <section id="free-time">
-          <motion.div
-            initial={{ opacity: 0, scale: 1, y: 30 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ delay: 2.5, duration: 2 }}
-          >
-            <FreeTime />
-          </motion.div>
-        </section>
+        <Section id="management" title="Leadership" delay={0.45}>
+          <Management />
+        </Section>
 
-        <section id="connect">
-          <motion.div
-            initial={{ opacity: 0, scale: 1, y: 30 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ delay: 3, duration: 2 }}
-          >
-            <Connect />
-          </motion.div>
-        </section>
+        <Section id="free-time" title="Beyond the Keyboard" delay={0.6}>
+          <FreeTime />
+        </Section>
+
+        {posts.length > 0 && (
+          <Section id="writing" title="Recent Writing" delay={0.75}>
+            <Box>
+              {posts.map((post, idx) => (
+                <PostCard key={post.slug} post={post} delay={idx} />
+              ))}
+              <Flex justify="flex-end" mb="md">
+                <Anchor href="/blog">More on the blog...</Anchor>
+              </Flex>
+            </Box>
+          </Section>
+        )}
+
+        <Section id="connect" delay={0.9}>
+          <Connect />
+        </Section>
       </Box>
     </Container>
   );

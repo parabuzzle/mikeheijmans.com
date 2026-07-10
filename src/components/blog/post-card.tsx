@@ -4,6 +4,7 @@ import { Paper, Title, Text, Divider, Flex, Loader } from "@mantine/core";
 import { motion } from "motion/react";
 import { useRouter } from "next/navigation";
 import type { Post } from "@/app/blog/actions";
+import { PreviewMarkdown } from "./preview-markdown";
 import classes from "./styles.module.css";
 
 export function PostCard({ post, delay }: { post: Post; delay?: number }) {
@@ -64,7 +65,7 @@ export function PostCard({ post, delay }: { post: Post; delay?: number }) {
               </Text>
             </Flex>
             <Divider color="violet" mb="md" />
-            <Text>{preview}</Text>
+            <PreviewMarkdown>{preview}</PreviewMarkdown>
             <Flex justify="flex-end">
               {loading && <Loader size="sm" />}
               {!loading && <Text size="sm">Read more...</Text>}

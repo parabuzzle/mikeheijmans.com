@@ -1,6 +1,7 @@
 import { HomePage } from "./home-page";
 
 export * from "./about";
+export * from "./applied-ai";
 export * from "./name";
 export * from "./current-role";
 export * from "./management";

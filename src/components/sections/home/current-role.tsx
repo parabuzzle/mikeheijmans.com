@@ -5,7 +5,7 @@ export function CurrentRole() {
   return (
     <Box>
       <Text size="xl" mb="lg" fw={500}>
-        I&apos;m currently the Director of Platform Technology at Tradweb
+        I&apos;m currently the Director of Platform Technology at Tradeweb
         Markets LLC where I lead multiple teams of engineers responsible for the
         interface between the business application development teams and the
         infrastructure that runs their applications. This includes the

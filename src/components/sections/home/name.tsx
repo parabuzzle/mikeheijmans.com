@@ -20,7 +20,7 @@ export function Name() {
         //this section is the mobile avatar
         initial={{ opacity: 0, scale: 2, x: -200, y: -200 }}
         animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
-        transition={{ duration: 2, delay: 0.5, ease: easing }}
+        transition={{ duration: 0.8, delay: 0.3, ease: easing }}
       >
         <Avatar
           style={{ float: "right", marginRight: "10px" }}
@@ -35,7 +35,7 @@ export function Name() {
         <motion.div
           initial={{ opacity: 0, scale: 1, y: 100 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 1.5, ease: easing }}
+          transition={{ delay: 0.1, duration: 0.8, ease: easing }}
         >
           <Title mb="xl" order={1} size="80px">
             Mike Heijmans
@@ -44,7 +44,7 @@ export function Name() {
         <motion.div
           initial={{ opacity: 0, scale: 2, x: 100, y: -100 }}
           animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
-          transition={{ duration: 2, delay: 0.5, ease: easing }}
+          transition={{ duration: 0.8, delay: 0.3, ease: easing }}
         >
           <Avatar
             visibleFrom="sm"
@@ -57,10 +57,10 @@ export function Name() {
       <motion.div
         initial={{ opacity: 0, scale: 1 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 2, delay: 2, ease: easing }}
+        transition={{ duration: 0.8, delay: 0.4, ease: easing }}
       >
         <Text c="dimmed" fs="italic" size="md">
-          I build organizations and applications for the future.
+          I build AI-native organizations and applications for the future.
         </Text>
       </motion.div>
     </Box>
