@@ -49,7 +49,7 @@ export function Name() {
           <Avatar
             visibleFrom="sm"
             size="xl"
-            src="/mike.png"
+            src="/me-germany.jpg"
             alt="Mike Heijmans"
           />
         </motion.div>
