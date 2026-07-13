@@ -10,6 +10,7 @@ import {
   Management,
   FreeTime,
   Connect,
+  SiliconToCloud,
 } from "@/components/sections/home";
 
 const easing = [0, 0.71, 0.2, 1.01] as const;
@@ -61,20 +62,24 @@ export function HomePage({ posts = [] }: { posts?: Post[] }) {
           <About />
         </Section>
 
-        <Section id="applied-ai" title="Applied AI" delay={0.3}>
+        <Section id="silicon-to-cloud" title="Silicon to Cloud" delay={0.3}>
+          <SiliconToCloud />
+        </Section>
+
+        <Section id="applied-ai" title="Applied AI" delay={0.45}>
           <AppliedAI />
         </Section>
 
-        <Section id="management" title="Leadership" delay={0.45}>
+        <Section id="management" title="Leadership" delay={0.6}>
           <Management />
         </Section>
 
-        <Section id="free-time" title="Beyond the Keyboard" delay={0.6}>
+        <Section id="free-time" title="Beyond the Keyboard" delay={0.75}>
           <FreeTime />
         </Section>
 
         {posts.length > 0 && (
-          <Section id="writing" title="Recent Writing" delay={0.75}>
+          <Section id="writing" title="Recent Writing" delay={0.9}>
             <Box>
               {posts.map((post, idx) => (
                 <PostCard key={post.slug} post={post} delay={idx} />
@@ -86,7 +91,7 @@ export function HomePage({ posts = [] }: { posts?: Post[] }) {
           </Section>
         )}
 
-        <Section id="connect" delay={0.9}>
+        <Section id="connect" delay={1.05}>
           <Connect />
         </Section>
       </Box>

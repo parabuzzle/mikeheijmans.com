@@ -60,7 +60,8 @@ export function Name() {
         transition={{ duration: 0.8, delay: 0.4, ease: easing }}
       >
         <Text c="dimmed" fs="italic" size="md">
-          I build AI-native organizations and applications for the future.
+          I build intelligent hardware from silicon to cloud: embedded
+          systems, platform engineering, and applied AI.
         </Text>
       </motion.div>
     </Box>

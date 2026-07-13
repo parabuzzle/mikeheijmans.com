@@ -21,9 +21,20 @@ import "./global.css";
 import "@mantine/notifications/styles.css";
 
 export const metadata: Metadata = {
-  title: "Mike's Profile",
+  title: "Mike Heijmans | Silicon to Cloud",
   description:
-    "Discover the personal projects of Mike Heijmans, a seasoned software engineer and technical leader with two decades of experience. As the Director of Platform Technology at Tradeweb Markets LLC, Mike leads teams focused on platform engineering, Kubernetes, CI/CD, observability, and cloud strategy. Outside of work, he explores new technologies, builds creative side projects, flies planes, dives into caves, and contributes to open-source. Dive into his latest projects, blog posts, and insights on engineering, leadership, and innovation.",
+    "Mike Heijmans builds intelligent hardware from silicon to cloud: CTO of Rising Orchards, 20 years of platform engineering, embedded systems, applied AI.",
+  openGraph: {
+    title: "Mike Heijmans | Silicon to Cloud",
+    description:
+      "CTO of Rising Orchards, building cloud-connected embedded hardware (IgorBox) on twenty years of platform and infrastructure engineering at scale. ESP32 firmware, PCB design, Kubernetes, and applied AI: the whole stack, from the copper up.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mike Heijmans | Silicon to Cloud",
+    description:
+      "CTO of Rising Orchards, building cloud-connected embedded hardware (IgorBox) on twenty years of platform and infrastructure engineering at scale.",
+  },
 };
 
 export default function RootLayout({

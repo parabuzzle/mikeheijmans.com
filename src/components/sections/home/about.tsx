@@ -5,14 +5,15 @@ export function About() {
   return (
     <Box>
       <Text mb="md" size="lg" fw={500}>
-        I&apos;m a senior software leader and engineer with two decades of
-        experience, and for the last few years I&apos;ve gone all-in on applied
-        AI. I design AI-native development workflows: multi-agent coding
-        pipelines, MCP servers that let agents drive real applications, and the
-        observability to measure whether any of it actually works. That sits on
-        top of a career spent leading globally distributed teams, automating
-        CI/CD pipelines, and running Kubernetes platforms at scale. I learn
-        fast, sweat the details, and never lose sight of the bigger picture.
+        I build intelligent hardware from silicon to cloud. I spent roughly
+        twenty years on platform and infrastructure engineering at scale:
+        Kubernetes, CI/CD, observability, and globally distributed teams. Now
+        I also design the hardware underneath, from PCBs in Altium and ESP32
+        firmware in C to the cloud platform that manages the fleet. Applied AI
+        is the through-line: multi-agent coding pipelines, MCP servers that
+        let agents drive real applications, and the observability to measure
+        whether any of it actually works. Most engineers build one end of that
+        stack; the interesting problems live in owning both.
       </Text>
     </Box>
   );
